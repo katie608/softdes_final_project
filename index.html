@@ -2,17 +2,76 @@
 <html>
 <head>
 <style>
+h1 {
+  color: white;
+  font-family: arial;
+  font-size: 96px;
+  padding: 60px;
+  text-align: center;
+}
+h2 {
+  color: #999999;
+  font-family: arial;
+  font-size: 60px;
+  padding: 0px;
+  padding-top: 0px;
+  text-align: center;
+}
+p  {
+  color: #999999;
+  font-family: arial;
+  font-size: 32px;
+  text-align: center;
+}
 body {
   height: 1000px;
-  /*background: #00043d;*/
-  background: linear-gradient(141deg, #4286f4, #a7c3f2 51%, #c4daff 75%);
+  background: black;
+  /* background: linear-gradient(141deg, #4286f4, #a7c3f2 51%, #c4daff 75%); */
+}
+
+a {
+  color: #999999;
+}
+button {
+  background-color: rgba(255, 255, 255, 0);
+  border: 2px solid #999999;
+  color: #999999;
+  padding: 8px 16px;
+  text-align: center;
+  font-size: 32px;
+  margin: 4px 2px;
+  transition: 0.3s;
+}
+button:hover {
+  background-color: #999999;
+  color: black;
 }
 </style>
 </head>
 <body>
 
-<button onclick="getLocation()">Get Location</button>
+<!-- <h1>Welcome!</h1> -->
 
+<h2>Please click to allow us to use your location, or pick a time zone</h2>
+
+<p>
+<button onclick="getLocation()">Use Geolocation</button>
+<button>Enter a Time Zone</button>
+</p>
+
+<h2>Please Select a Scene</h2>
+
+<p>
+<button>Beach</button>
+<button>Forest</button>
+<button>Moutains</button>
+<button>Desert</button>
+</p>
+
+
+<p>
+<button "font-size= 64px">Generate Background</button>
+</p>
 
 <p id="demo"></p>
 
@@ -32,6 +91,11 @@ function getLocation() {
 function showPosition(position) {
   x.innerHTML = "Latitude: " + position.coords.latitude +
   "<br>Longitude: " + position.coords.longitude;
+}
+
+var scene = 0
+function getScene() {
+  scene = 1
 }
 </script>
 
