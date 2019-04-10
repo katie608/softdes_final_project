@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<!-- Make scene selector dropdown menu instead
+make timezone dropdown
+make generate scene button larger than others
+Make prettier -->
 <html>
 <head>
 <style>
@@ -46,6 +50,10 @@ button:hover {
   background-color: #999999;
   color: black;
 }
+button:focus {
+  background-color: #999999;
+  color: black;
+}
 </style>
 </head>
 <body>
@@ -62,10 +70,10 @@ button:hover {
 <h2>Please Select a Scene</h2>
 
 <p>
-<button>Beach</button>
-<button>Forest</button>
-<button>Moutains</button>
-<button>Desert</button>
+<button id="sceneBtn1" value="1" onclick="getScene1()">Beach</button>
+<button id="sceneBtn2" value="2" onclick="getScene2()">Forest</button>
+<button id="sceneBtn3" value="3" onclick="getScene3()">Moutains</button>
+<button id="sceneBtn4" value="4" onclick="getScene4()">Desert</button>
 </p>
 
 
@@ -74,18 +82,26 @@ button:hover {
 </p>
 
 <p id="demo"></p>
+<p id="timezone"></p>
+<p id="scene"></p>
 
 <script>
 var x = document.getElementById("demo");
+var tz = document.getElementById("timezone");
 
 function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
+    // x.innerHTML = navigator.geolocation.getCurrentPosition.position.coords.latitude;
   } else {
     x.innerHTML = "Geolocation is not supported by this browser.";
   }
 }
 
+// function getTimezone() {
+//   const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+//
+// }
 
 
 function showPosition(position) {
@@ -93,9 +109,25 @@ function showPosition(position) {
   "<br>Longitude: " + position.coords.longitude;
 }
 
-var scene = 0
-function getScene() {
-  scene = 1
+// function showTimezone(timezone) {
+//   tz.innerHTML =
+// }
+
+function getScene1() {
+  var scene = document.getElementById("sceneBtn1").value;
+  document.getElementById("scene").innerHTML = scene;
+}
+function getScene2() {
+  var scene = document.getElementById("sceneBtn2").value;
+  document.getElementById("scene").innerHTML = scene;
+}
+function getScene3() {
+  var scene = document.getElementById("sceneBtn3").value;
+  document.getElementById("scene").innerHTML = scene;
+}
+function getScene4() {
+  var scene = document.getElementById("sceneBtn4").value;
+  document.getElementById("scene").innerHTML = scene;
 }
 </script>
 
