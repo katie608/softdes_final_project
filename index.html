@@ -5,41 +5,45 @@ make generate scene button larger than others
 Make prettier -->
 <html>
 <head>
+  <title>Gradient</title>
+  <link rel="icon" href="Favicon.JPG" type="image" sizes="16x16">
 <style>
+.center {
+  text-align: center;
+}
 h1 {
-  color: white;
+  color: #ebecf0;
   font-family: arial;
   font-size: 96px;
   padding: 60px;
   text-align: center;
 }
 h2 {
-  color: #999999;
+  color: #ebecf0;
   font-family: arial;
-  font-size: 60px;
+  font-size: 48px;
   padding: 0px;
-  padding-top: 0px;
   text-align: center;
 }
 p  {
-  color: #999999;
+  color: #ebecf0;
   font-family: arial;
   font-size: 32px;
   text-align: center;
 }
 body {
   height: 1000px;
-  background: black;
-  /* background: linear-gradient(141deg, #4286f4, #a7c3f2 51%, #c4daff 75%); */
+  /* background: #5f657f; */
+  background: linear-gradient(181deg, #373b59, #787fa0 75%);
 }
 
 a {
-  color: #999999;
+  color: #ebecf0;
 }
 button {
   background-color: rgba(255, 255, 255, 0);
-  border: 2px solid #999999;
-  color: #999999;
+  border: 2px solid #ebecf0;
+  color: #ebecf0;
   padding: 8px 16px;
   text-align: center;
   font-size: 32px;
@@ -47,56 +51,113 @@ button {
   transition: 0.3s;
 }
 button:hover {
-  background-color: #999999;
+  background-color: #ebecf0;
   color: black;
 }
-button:focus {
-  background-color: #999999;
+/* button:focus {
+  background-color: #ebecf0;
+  color: black;
+} */
+
+.dropbtn {
+  background-color: rgba(255, 255, 255, 0);
+  border: 2px solid #ebecf0;
+  color: #ebecf0;
+  padding: 8px 16px;
+  text-align: center;
+  font-size: 32px;
+  margin: 4px 2px;
+  transition: 0.3s;
+  margin: auto;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #ebecf0;
   color: black;
 }
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  margin: auto;
+  text-align: center;
+}
+
+.dropdown-content {
+  display: none;
+  font-family: arial;
+  position: absolute;
+  background-color: #ebecf0;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content p {
+  color: black;
+  font-family: arial;
+  font-size: 18px;
+  text-align: left;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
+
+
 </style>
 </head>
 <body>
 
 <!-- <h1>Welcome!</h1> -->
 
-<h2>Please click to allow us to use your location, or pick a time zone</h2>
+<!-- <h2>Pick a time zone or allow</h2>
+<h2>us to use your location </h2>
 
 <p>
 <button onclick="getLocation()">Use Geolocation</button>
 <button>Enter a Time Zone</button>
-</p>
+</p> -->
 
-<h2>Please Select a Scene</h2>
+<h2>Select a Scene</h2>
 
+<div class="center">
+  <div class="dropdown">
+    <button onclick="showDropdown()" class="dropbtn">Select</button>
+    <div id="myDropdown" class="dropdown-content">
+      <p id="sceneSelect1" value="1" onclick="getScene1()">Beach</p>
+      <p id="sceneSelect2" value="2" onclick="getScene2()">Forest</p>
+      <p id="sceneSelect3" value="3" onclick="getScene3()">Mountains</p>
+      <p id="sceneSelect4" value="4" onclick="getScene4()">Desert</p>
+    </div>
+  </div>
+</div>
+
+<h2>Ready to Generate Background?</h2>
 <p>
-<button id="sceneBtn1" value="1" onclick="getScene1()">Beach</button>
-<button id="sceneBtn2" value="2" onclick="getScene2()">Forest</button>
-<button id="sceneBtn3" value="3" onclick="getScene3()">Moutains</button>
-<button id="sceneBtn4" value="4" onclick="getScene4()">Desert</button>
-</p>
-
-
-<p>
-<button "font-size= 64px">Generate Background</button>
+<button button onclick="showDate()">Generate</button>
 </p>
 
 <p id="demo"></p>
-<p id="timezone"></p>
+<p id="time"></p>
 <p id="scene"></p>
 
 <script>
 var x = document.getElementById("demo");
-var tz = document.getElementById("timezone");
+// var tz = document.getElementById("timezone");
 
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
-    // x.innerHTML = navigator.geolocation.getCurrentPosition.position.coords.latitude;
-  } else {
-    x.innerHTML = "Geolocation is not supported by this browser.";
-  }
-}
+// function getLocation() {
+//   if (navigator.geolocation) {
+//     navigator.geolocation.getCurrentPosition(showPosition);
+//     // x.innerHTML = navigator.geolocation.getCurrentPosition.position.coords.latitude;
+//   } else {
+//     x.innerHTML = "Geolocation is not supported by this browser.";
+//   }
+// }
 
 // function getTimezone() {
 //   const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -104,30 +165,67 @@ function getLocation() {
 // }
 
 
-function showPosition(position) {
-  x.innerHTML = "Latitude: " + position.coords.latitude +
-  "<br>Longitude: " + position.coords.longitude;
-}
+
+
+// function showPosition(position) {
+//   x.innerHTML = "Latitude: " + position.coords.latitude +
+//   "<br>Longitude: " + position.coords.longitude;
+// }
+
+
 
 // function showTimezone(timezone) {
 //   tz.innerHTML =
 // }
 
 function getScene1() {
-  var scene = document.getElementById("sceneBtn1").value;
+  // var scene = document.getElementById("sceneBtn1").value;
+  var scene = 1;
   document.getElementById("scene").innerHTML = scene;
 }
 function getScene2() {
-  var scene = document.getElementById("sceneBtn2").value;
+  // var scene = document.getElementById("sceneBtn2").value;
+  var scene = 2;
   document.getElementById("scene").innerHTML = scene;
 }
 function getScene3() {
-  var scene = document.getElementById("sceneBtn3").value;
+  // var scene = document.getElementById("sceneBtn3").value;
+  var scene = 3;
   document.getElementById("scene").innerHTML = scene;
 }
 function getScene4() {
-  var scene = document.getElementById("sceneBtn4").value;
+  // var scene = document.getElementById("sceneBtn4").value;
+  var scene = 4;
   document.getElementById("scene").innerHTML = scene;
+}
+
+
+function showDate() {
+  var userTime = new Date();
+  x.innerHTML = "Date: "  + new Date();
+
+}
+
+
+
+/* When the user clicks on the button for dropdown,
+toggle between hiding and showing the dropdown content */
+function showDropdown() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
 }
 </script>
 
