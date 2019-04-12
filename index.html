@@ -1,127 +1,15 @@
 <!DOCTYPE html>
-<!-- Make scene selector dropdown menu instead
-make timezone dropdown
-make generate scene button larger than others
+<!-- make generate scene button larger than others
 Make prettier -->
 <html>
 <head>
   <title>Gradient</title>
   <link rel="icon" href="Favicon.JPG" type="image" sizes="16x16">
-<style>
-.center {
-  text-align: center;
-}
-h1 {
-  color: #ebecf0;
-  font-family: arial;
-  font-size: 96px;
-  padding: 60px;
-  text-align: center;
-}
-h2 {
-  color: #ebecf0;
-  font-family: arial;
-  font-size: 48px;
-  padding: 0px;
-  text-align: center;
-}
-p  {
-  color: #ebecf0;
-  font-family: arial;
-  font-size: 32px;
-  text-align: center;
-}
-body {
-  height: 1000px;
-  /* background: #5f657f; */
-  background: linear-gradient(181deg, #373b59, #787fa0 75%);
-}
+  <link rel="stylesheet" type="text/css" href="gradient.css"/>
 
-a {
-  color: #ebecf0;
-}
-button {
-  background-color: rgba(255, 255, 255, 0);
-  border: 2px solid #ebecf0;
-  color: #ebecf0;
-  padding: 8px 16px;
-  text-align: center;
-  font-size: 32px;
-  margin: 4px 2px;
-  transition: 0.3s;
-}
-button:hover {
-  background-color: #ebecf0;
-  color: black;
-}
-/* button:focus {
-  background-color: #ebecf0;
-  color: black;
-} */
-
-.dropbtn {
-  background-color: rgba(255, 255, 255, 0);
-  border: 2px solid #ebecf0;
-  color: #ebecf0;
-  padding: 8px 16px;
-  text-align: center;
-  font-size: 32px;
-  margin: 4px 2px;
-  transition: 0.3s;
-  margin: auto;
-}
-
-.dropbtn:hover, .dropbtn:focus {
-  background-color: #ebecf0;
-  color: black;
-}
-
-.dropdown {
-  position: relative;
-  display: inline-block;
-  margin: auto;
-  text-align: center;
-}
-
-.dropdown-content {
-  display: none;
-  font-family: arial;
-  position: absolute;
-  background-color: #ebecf0;
-  min-width: 160px;
-  overflow: auto;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-.dropdown-content p {
-  color: black;
-  font-family: arial;
-  font-size: 18px;
-  text-align: left;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-.dropdown a:hover {background-color: #ddd;}
-
-.show {display: block;}
-
-
-</style>
 </head>
 <body>
 
-<!-- <h1>Welcome!</h1> -->
-
-<!-- <h2>Pick a time zone or allow</h2>
-<h2>us to use your location </h2>
-
-<p>
-<button onclick="getLocation()">Use Geolocation</button>
-<button>Enter a Time Zone</button>
-</p> -->
 
 <h2>Select a Scene</h2>
 
@@ -148,35 +36,7 @@ button:hover {
 
 <script>
 var x = document.getElementById("demo");
-// var tz = document.getElementById("timezone");
 
-// function getLocation() {
-//   if (navigator.geolocation) {
-//     navigator.geolocation.getCurrentPosition(showPosition);
-//     // x.innerHTML = navigator.geolocation.getCurrentPosition.position.coords.latitude;
-//   } else {
-//     x.innerHTML = "Geolocation is not supported by this browser.";
-//   }
-// }
-
-// function getTimezone() {
-//   const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-//
-// }
-
-
-
-
-// function showPosition(position) {
-//   x.innerHTML = "Latitude: " + position.coords.latitude +
-//   "<br>Longitude: " + position.coords.longitude;
-// }
-
-
-
-// function showTimezone(timezone) {
-//   tz.innerHTML =
-// }
 
 function getScene1() {
   // var scene = document.getElementById("sceneBtn1").value;
@@ -203,7 +63,6 @@ function getScene4() {
 function showDate() {
   var userTime = new Date();
   x.innerHTML = "Date: "  + new Date();
-
 }
 
 
