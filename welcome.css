@@ -1,16 +1,3 @@
-:root {
-  --gradient-1: #8998f9;
-  --gradient-2: #b390f9;
-}
-
-
-body {
-  height: 1000px;
-  /* background: #5f657f; */
-  background: linear-gradient(181deg, var(--gradient-1), var(--gradient-2) 75%);
-}
-
-
 .center {
   text-align: center;
 }
@@ -33,6 +20,11 @@ p  {
   font-family: arial;
   font-size: 32px;
   text-align: center;
+}
+body {
+  height: 1000px;
+  /* background: #5f657f; */
+  background: linear-gradient(181deg, #373b59, #787fa0 75%);
 }
 
 a {
