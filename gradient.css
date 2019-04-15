@@ -6,8 +6,8 @@
 
 body {
   height: 1000px;
-  /* background: #5f657f; */
-  background: linear-gradient(181deg, var(--gradient-1), var(--gradient-2) 75%);
+  background: lightblue;
+  /* background: linear-gradient(181deg, var(--gradient-1), var(--gradient-2) 75%); */
 }
 
 

@@ -24,6 +24,7 @@ p  {
 body {
   height: 1000px;
   /* background: #5f657f; */
+  /* background: linear-gradient(181deg, #0652C5,#D4418E); */
   background: linear-gradient(181deg, #373b59, #787fa0 75%);
 }
 
