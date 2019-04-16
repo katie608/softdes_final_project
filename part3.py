@@ -12,16 +12,16 @@ TWO=[] #FOREST
 THREE=[] #MOUNTAIN
 FOUR=[] #DESERT
 
-num_to_select=randint(0,9)
+num_to_select=randint(1,2) #the numbers depend on the list of pics on the environment
 list_of_random_images=random.sample(ONE,num_to_select)
-
-# #-----------------------------------------
+print(list_of_random_images)
+#-----------------------------------------
 
 #overlay image onto final screen
 """
 puts image onto other image (eg middleground (sand), and foreground (octopus))
 """
-# #------the manual version------
+#------the manual version------
 # sand=Image.open("sand.jpg")
 # beachball=Image.open("beachball.jpg")
 # octo=Image.open("octo.jpg")
@@ -38,6 +38,20 @@ sand=Image.open("sand.jpg")
 
 for i in list_of_random_images:
     element=Image.open(i)
-    sand.paste(element)
+    ####now we just need to randomize posiutioning of pasting
+
+
+
+get initial position
+
+
+    position =()
+
+
+    ###
+    sand.paste(element, position)
+
+# sand.save('new image!')
+
 
 sand.show()
