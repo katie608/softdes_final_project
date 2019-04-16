@@ -16,27 +16,68 @@ var x = document.getElementById("main");
 function setBackground() {
   var userTime = new Date();
   var hour = userTime.getHours();
-  if (hour<=6 || hour>=20) {
-    // nighttime
-    x.style.background = "linear-gradient(181deg, #000000, #000547 75%)";
+  var minute = userTime.getMinutes();
+  if (hour<=4 || hour>21) {
+    // nighttime DONE
+    x.style.background = "linear-gradient(0deg,#001538,#000000)";
+  }else if (hour==5) {
+    // 5 am DONE
+    x.style.background = "linear-gradient(0deg,#62492e,#252a3c,#15192c,#05050e)";
+  }else if (hour==6) {
+    // 6 am DONE
+    x.style.background = "linear-gradient(0deg,#8c4a5f,#827143,#526884,#18234f)";
   }else if (hour==7) {
-    // sunrise 1
-    x.style.background = "linear-gradient(181deg, #9DA0D0, #DEB6D0,#FFD0B3,#FFE4C4,#FFFEDE)";
+    // 7 am DONE
+    x.style.background = "linear-gradient(0deg, #8c4a5f,#526884,#18234f)";
   }else if (hour==8) {
-    // sunrise 2
-    x.style.background = "linear-gradient(181deg, #000547, #8abbdb 75%)";
-  }else if (hour>8 && hour<18){
-    // daytime
-    x.style.background = "linear-gradient(181deg, #7f7fd5, #86A8E7 51%, #91EAE4 75%)";
+    // 8 am DONE
+    x.style.background = "linear-gradient(0deg, #8abbdb,#000547 75%)";
+  }else if (hour==9){
+    // 9 am DONE
+    x.style.background = "linear-gradient(0deg, #bdd8e3, #5782ae, #2a477e)";
+  }else if (hour>=10 && hour<=15) {
+    // 10 am - 3 pm DONE
+    x.style.background = "linear-gradient(0deg, #8ec2e5, #5782ae, #2a477e)";
+  }else if (hour==16) {
+    // 4pm is split DONE
+    if (minute<30){
+      // before 4:30 DONE
+      x.style.background = "linear-gradient(0deg, #bdd8e3, #5782ae, #2a477e)";
+    } else{
+      // after 4:30 DONE
+      x.style.background = "linear-gradient(0deg, #9a8d8d,#728ca4, #5782ae, #2a477e)";
+    }
+  }else if (hour==17) {
+    // 5 pm DONE
+    x.style.background = "linear-gradient(0deg,#9a8d8d,#b1b09b,#8d9ea0, #586d89, #3e4c6c)";
   }else if (hour==18) {
-    // sunset
-    x.style.background = "linear-gradient(181deg, #FE5F75, #FC9842 75%)";
+    // 6 pm is split DONE
+    if (minute<30){
+      // before 6:30 DONE
+      x.style.background = "linear-gradient(0deg,#8f4036,#f9bb73,#f1dab6,#aeb7c6,#6c82a7,#203865,#0a1335)";
+    } else{
+      // after 6:30 DONE
+      x.style.background = "linear-gradient(0deg,#964134,#f8d7ac,#92a4bc,#223566,#0b1536)";
+    }
   }else if (hour==19) {
-    // dusk
-    x.style.background = "linear-gradient(181deg, #0652C5, #D4418E 75%)";
+    // 7 pm split DONE
+    if (minute<30){
+      // before 7:30 DONE
+      x.style.background = "linear-gradient(0deg,#8c3e22,#ad8760,#948975,#79818a,#4a5f82,#21325a,#090e28,#06091a)";
+    } else{
+      // after 7:30 DONE
+      x.style.background = "linear-gradient(0deg,#662714,#7c684d,#4c545e,#0f152c,#060610)";
+    }
+  }else if (hour==20) {
+    // 8 pm DONE
+    x.style.background = "linear-gradient(0deg,#6d231d,#723d27,#62492e,#252a3c,#15192c,#05050e)";
+  }else if (hour==21) {
+    // 9 pm DONE
+    x.style.background = "linear-gradient(0deg,#62492e,#252a3c,#15192c,#05050e,#010414)";
   }else {
     x.style.background = "darkblue";
   }
+  setTimeout(setBackground, 6000);
 }
 </script>
 
