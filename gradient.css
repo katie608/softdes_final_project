@@ -35,9 +35,15 @@ p  {
   text-align: center;
 }
 
+form {
+
+}
+
 a {
   color: #ebecf0;
 }
+
+
 button {
   background-color: rgba(255, 255, 255, 0);
   border: 2px solid #ebecf0;
