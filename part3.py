@@ -4,9 +4,8 @@ from PIL import Image
 
 #randomly generates x forground elements
 """
-1. random selection from environment list
-2. randomly places random selection onto screen
-# """
+random selection from environment requested (aka a list)
+"""
 ONE=["octo.jpg", "beachball.jpg", "eagle.png"] #BEACH
 TWO=[] #FOREST
 THREE=[] #MOUNTAIN
@@ -15,11 +14,10 @@ FOUR=[] #DESERT
 num_to_select=randint(1,2) #the numbers depend on the list of pics on the environment
 list_of_random_images=random.sample(ONE,num_to_select)
 print(list_of_random_images)
-#-----------------------------------------
 
-#overlay image onto final screen
+
 """
-puts image onto other image (eg middleground (sand), and foreground (octopus))
+randomly places random selection onto screen
 """
 #------the manual version------
 # sand=Image.open("sand.jpg")
@@ -34,24 +32,19 @@ puts image onto other image (eg middleground (sand), and foreground (octopus))
 # #sand.show()
 
 # -----the automatic version------
-sand=Image.open("sand.jpg")
+middleground=Image.open("sand.jpg")
+width, height=middleground.size
 
 for i in list_of_random_images:
     element=Image.open(i)
-    ####now we just need to randomize posiutioning of pasting
+    w,h = element.size
 
+    startwidth=randint(0,width)
+    startheight=randint(0,height)
+    endwidth=startwidth+w
+    endheight=startheight+h
 
+    position=(startwidth,startheight,endwidth,endheight)
+    middleground.paste(element, position)
 
-get initial position
-
-
-    position =()
-
-
-    ###
-    sand.paste(element, position)
-
-# sand.save('new image!')
-
-
-sand.show()
+middleground.show()
