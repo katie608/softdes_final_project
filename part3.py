@@ -1,8 +1,9 @@
+#part3.py randomly generates x forground elements and places them onto screen
+
 import random
 from random import randint
 from PIL import Image
 
-#randomly generates x forground elements
 """
 random selection from environment requested (aka a list)
 """
