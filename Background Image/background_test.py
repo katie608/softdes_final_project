@@ -14,15 +14,12 @@ def generate_art(filename,s,x_size=255, y_size=255):
         s: string that tells what time of day it is
         x_size, y_size: optional args to set image dimensions (default: 255)
     """
-    # Functions for red, green, and blue channels - where the magic happens!
-    #
-    # red_function = "y^2"
-    # green_function = "y^2"
-    # blue_function = "y"
 
     # Create image and loop over all pixels
     im = Image.new("RGB", (x_size, y_size))
-    pixels = im.load()
+    im3 = Image.new("RGB",(x_size, y_size))
+    im2 = im.putalpha(0)
+    pixels = im3.load()
     for i in range(x_size):
         for j in range(y_size):
             x = i
@@ -31,22 +28,22 @@ def generate_art(filename,s,x_size=255, y_size=255):
                 a = x*y
                 b = y
                 c = 0
-            if s == "daytime":
-                a = y
-                b = y*x*x
-                c = y*x*x
-            if s == "evening":
-                a = 0
-                b = y
-                c = x*y
-            if s == "sunset":
-                a = y
-                b = 0
-                c = y*y*y
-            if s == "night":
-                a = 0
-                b = 0
-                c = y
+            # if s == "daytime":
+            #     a = y
+            #     b = y*x*x
+            #     c = y*x*x
+            # if s == "evening":
+            #     a = 0
+            #     b = y
+            #     c = x*y
+            # if s == "sunset":
+            #     a = y
+            #     b = 0
+            #     c = y*y*y
+            # if s == "night":
+            #     a = 0
+            #     b = 0
+            #     c = y
             pixels[i, j] = (
                 # color_map(evaluate_random_function(red_function, x, y)),
                 # #color_map(0),
@@ -56,11 +53,13 @@ def generate_art(filename,s,x_size=255, y_size=255):
                 b,
                 c
             )
-    im.save(filename)
+    
+    im4 = Image.blend(im2,im3,0.5)
+    im4.save(filename)
 
 
 if __name__ == '__main__':
     import doctest
     doctest.testmod()
 
-    generate_art("background.png","night")
+    generate_art("background.png","sunrise")
