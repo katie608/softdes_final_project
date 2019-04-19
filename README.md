@@ -1,4 +1,4 @@
-# Website Time Based Gradient Background Generator
+# Time Based Gradient Background Generator Website
 Repository for Final Project for Software Design Class at Olin. Collaborators are Shirin, Anne, and Katie. 
 
 Goal of Project: to create a background that mimics the natural light outside to create a visually pleasing color and then to create an environment that the user enjoys looking at when opening a browser. This is intended to be a fun and relaxing project for people to enjoy.
