@@ -6,6 +6,7 @@ Goal of Project: to create a background that mimics the natural light outside to
 Prior to cloning the repository, download the PIL image library and Flask by running the following commands: 
 
 `$ pip install Pillow`
+
 `$ pip install Flask`
 
 
