@@ -9,11 +9,11 @@ Make prettier -->
 
 </head>
 <body>
-
 <div id="main" style="100%">
-<h2 style = "padding-top:10%;">Select a Scene</h2>
 
-<div class="center">
+<!-- <h2 style = "padding-top:10%;">Select a Scene</h2> -->
+
+<!-- <div class="center">
   <div class="dropdown">
     <button onclick="showDropdown()" class="dropbtn">Select</button>
     <div id="myDropdown" class="dropdown-content">
@@ -23,11 +23,31 @@ Make prettier -->
       <p id="sceneSelect4" value="4" onclick="getScene4()">Desert</p>
     </div>
   </div>
+</div> -->
+
+<div class="center">
+<form action="/action_page.php">
+  <h2>Select a Scene</h2>
+  <select name="scenes">
+    <option value="Beach">Beach</option>
+    <option value="Forest">Forest</option>
+    <option value="Mountain">Mountain</option>
+    <option value="Desert">Desert</option>
+  </select>
+  <br><br>
+  <h2>Ready to Generate Background?</h2>
+  <input type="submit">
+</form>
 </div>
 
-<h2>Ready to Generate Background?</h2>
+<h2>Check Variables</h2>
 <p>
-<a href="./generated.html"><button button onclick="showDate()">Generate</button></a>
+<button button onclick="showDate()">Check</button>
+</p>
+
+
+<p>
+<button button onclick="sendToServer()">Send time/dimentions</button>
 </p>
 
 
@@ -67,9 +87,20 @@ function getScene4() {
 
 function showDate() {
   var userTime = new Date();
-  x.innerHTML = "Date: "  + new Date();
+  var w = window.innerWidth;
+  var h = window.innerHeight;
+  x.innerHTML = "Date: "  + new Date() +
+  "width: " + w + "height: "+  h;
 }
 
+
+
+function sendToServer(){
+    var time = new Date();
+    var i = document.createElement("img");
+    i.src = "/getTime?time=" + time;
+    document.getElementById("time").innerHTML = time;
+}
 
 
 /* When the user clicks on the button for dropdown,

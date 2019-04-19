@@ -12,7 +12,7 @@ app = Flask(__name__)
 
 # renders html hopefully
 @app.route('/', methods = ["GET","POST"])
-def get_input():
+def index():
     return render_template("index.html")
 
 
@@ -20,13 +20,16 @@ def get_input():
 # will render the output html with variables from first html
 @app.route('/output', methods = ["GET","POST"])
 def display_output():
-    name = request.form.get('name')
-    age = request.form.get('age')
+    scene = request.form.get('scene')
+    time = request.form.get('time')
     if scene == "":
         scene = random.randint(1,4)
-    elif age == "":
-        return render_template('error.html')
-    return render_template('generated.html', scene=scene, age=age)
+    # elif time == "":
+    #     return render_template('error.html')
+    print("browser time: ", request.args.get("time"))
+    time = request.args.get("time")
+    print("server time : ", time.strftime('%A %B, %d %Y %H:%M:%S'));
+    return render_template('generated.html', scene=scene, time=time)
 
 
 # runs local server with our application
