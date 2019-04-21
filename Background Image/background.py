@@ -60,17 +60,17 @@ def middleground(s):
     Mountains -> Mountains image
     Desert -> Dry Sand image
     """
-    if(s == "beach"):
+    if(s == "desert"):
         middleground = Image.open("sand.jpg")
-        middleground.resize((255,255))
-        #middleground.crop((0,100,100,0))
+        #middleground.resize((255,255))
+        #middleground.crop((100,100,100,100))
         return middleground
 
 def combine_back_middle(im1, im2):
     """
     This combines the the middleground and background images.
     """
-    im1.paste(im2,(0,100))
+    im1.paste(im2,(0,125))
     return im1
 
 if __name__ == '__main__':
@@ -78,7 +78,8 @@ if __name__ == '__main__':
     doctest.testmod()
     im = background("sunrise")
     #im1 = clear_background()
-    im2 = middleground("beach")
+    im2 = middleground("desert")
+    #im2.show()
     background = combine_back_middle(im,im2)
     #background = combine_back_middle(im,im1)
     background.show()
