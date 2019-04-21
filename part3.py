@@ -12,11 +12,12 @@ TWO=[] #FOREST
 THREE=[] #MOUNTAIN
 FOUR=[] #DESERT
 
-num_to_select=randint(1,2) #the numbers depend on the list of pics on the environment
-list_of_random_images=random.sample(ONE,num_to_select)
-print(list_of_random_images)
+def random_foreground_selection():
+    num_to_select=randint(1,2) #the numbers depend on the list of pics on the environment
+    list_of_random_images=random.sample(ONE,num_to_select)
+    return(list_of_random_images)
 
-
+# random_foreground_selection()
 """
 randomly places random selection onto screen
 """
@@ -36,16 +37,20 @@ randomly places random selection onto screen
 middleground=Image.open("sand.jpg")
 width, height=middleground.size
 
-for i in list_of_random_images:
-    element=Image.open(i)
-    w,h = element.size
+def random_placement(middleground):
 
-    startwidth=randint(0,width)
-    startheight=randint(0,height)
-    endwidth=startwidth+w
-    endheight=startheight+h
+    for i in random_foreground_selection():
+        element=Image.open(i)
+        w,h = element.size
 
-    position=(startwidth,startheight,endwidth,endheight)
-    middleground.paste(element, position)
+        startwidth=randint(0,width)
+        startheight=randint(0,height)
+        endwidth=startwidth+w
+        endheight=startheight+h
 
-middleground.show()
+        position=(startwidth,startheight,endwidth,endheight)
+        middleground.paste(element, position)
+
+    middleground.show()
+
+random_placement(middleground)
