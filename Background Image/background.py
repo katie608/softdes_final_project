@@ -1,4 +1,5 @@
 import random
+from random import randint
 import math
 from PIL import Image
 
@@ -66,23 +67,78 @@ def middleground(s):
         #middleground.crop((100,100,100,100))
         return middleground
 
-def combine_back_middle(im1, im2):
+# def combine_back_middle(im1, im2):
+#     """
+#     This combines the the middleground and background images.
+#     """
+#     im1.paste(im2,(0,125))
+#     return im1
+
+def choose_list(s):
     """
-    This combines the the middleground and background images.
+    returns a list of random objects that are present in each environment
+    environment.
     """
-    im1.paste(im2,(0,125))
-    return im1
+    ONE=["octo.png", "beachball.jpg", "eagle.png"] #BEACH
+    TWO=[] #FOREST
+    THREE=[] #MOUNTAIN
+    FOUR=[] #DESERT
+    if s == "beach":
+        return ONE
+    if s == "forest":
+        return TWO
+    if s == "mountain":
+        return THREE
+    if s == "desert":
+        return FOUR
+
+def random_foreground_selection(rand_obj):
+    """
+    Takes in a list of random objects corresponding to a particular environment
+    and returns a random selection of objects from that list stored in a new
+    list.
+    """
+    num_to_select=randint(1,2)
+    #the numbers depend on the list of pics on the environment
+    list_of_random_images=random.sample(rand_obj,num_to_select)
+    return(list_of_random_images)
+
+def random_placement(background,middleground,modified_list):
+
+    """
+    Takes in an image and a list of random objects and returns a compressed
+    image with the objects randomly placed on the image passed in.
+    """
+    width, height=middleground.size
+    print(modified_list)
+    for i in modified_list:
+        element=Image.open(i)
+        w,h = element.size
+
+        startwidth=randint(0,(width-w))
+        startheight=randint(0,(height-h))
+        endwidth=startwidth+w
+        endheight=startheight+h
+
+        position=(startwidth,startheight,endwidth,endheight)
+        middleground.paste(element, position)
+        background.paste(middleground,(0,125))
+
+        return background
 
 if __name__ == '__main__':
     import doctest
     doctest.testmod()
-    im = background("sunrise")
+
+    background = background("sunrise")
     #im1 = clear_background()
-    im2 = middleground("desert")
+    middleground = middleground("desert")
+    foreground = random_placement(background, middleground,random_foreground_selection(choose_list("beach")))
+    #foreground.show()
     #im2.show()
-    background = combine_back_middle(im,im2)
+    #display = combine_back_middle(background,foreground)
     #background = combine_back_middle(im,im1)
-    background.show()
+    foreground.show()
 
     #background.show()
     #background.save("background.jpg")
