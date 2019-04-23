@@ -1,4 +1,4 @@
-"""Toolbox 2
+"""Python code using flask to get variables from a website
 Katie Foster
 """
 # imports flask class
@@ -23,12 +23,6 @@ def display_output():
     if scene == "":
         return render_template('error.html')
     return render_template('output.html', scene=scene, date=date, dims=dims)
-
-
-@app.route('/hello/<name>')
-def helloTemplate(name=None):
-    return render_template('hello.html', name=name)
-
 
 # runs local server with our application
 # if __name__ == '__main__' makes sure the server only runs if the script is
