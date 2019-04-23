@@ -1,6 +1,8 @@
 <!doctype html>
 <head>
-  <title>Input</title>
+  <title>Output</title>
+  <link rel="icon" href="Favicon.JPG" type="image" sizes="16x16">
+  <link rel="stylesheet" type="text/css" href="gradient.css"/>
   <style>
   .center {
     text-align: center;
@@ -140,37 +142,12 @@
 
   .show {display: block;}
 
+
+
   </style>
 </head>
-
 <body>
-
-<div class="center">
-  <form onsubmit="this.elements['date'].value=new Date()" action="/output" method="POST">
-  <br>
-  <select name="scene">
-    <option value="Beach">Beach</option>
-    <option value="Forest">Forest</option>
-    <option value="Mountain">Mountain</option>
-    <option value="Desert">Desert</option>
-  </select>
-  <br><br>
-  <input name="date" type="hidden">
-  <input id="dims" name="dims" type="hidden">
-  <input type="submit">
-  </form>
-
-
-
-</div>
-<script>
-
-var dims = document.getElementById("dims");
-
-dims.value =  window.innerWidth + "," + window.innerHeight;
-
-</script>
-
-
-
+  <p>Scene: {{ scene }}</p>
+  <p>Date: {{ date }}</p>
+  <p>Dimentions: {{ dims }}</p>
 </body>
