@@ -67,13 +67,6 @@ def middleground(s):
         #middleground.crop((100,100,100,100))
         return middleground
 
-# def combine_back_middle(im1, im2):
-#     """
-#     This combines the the middleground and background images.
-#     """
-#     im1.paste(im2,(0,125))
-#     return im1
-
 def choose_list(s):
     """
     returns a list of random objects that are present in each environment
@@ -109,11 +102,24 @@ def random_placement(background,middleground,modified_list):
     Takes in an image and a list of random objects and returns a compressed
     image with the objects randomly placed on the image passed in.
     """
+    middleground.thumbnail((255,200))
+    w2,h2 = middleground.size
+    print(w2)
+    print(h2)
     width, height=middleground.size
+    height = 104
+    print(width)
+    print(height)
     print(modified_list)
     for i in modified_list:
         element=Image.open(i)
+        w1,h1 = element.size
+        print(w1)
+        print(h1)
+        element.thumbnail((20,20))
         w,h = element.size
+        print(w)
+        print(h)
 
         startwidth=randint(0,(width-w))
         startheight=randint(0,(height-h))
@@ -122,9 +128,9 @@ def random_placement(background,middleground,modified_list):
 
         position=(startwidth,startheight,endwidth,endheight)
         middleground.paste(element, position)
-        background.paste(middleground,(0,125))
+        background.paste(middleground,(0,151))
 
-        return background
+    return background
 
 if __name__ == '__main__':
     import doctest
@@ -133,12 +139,6 @@ if __name__ == '__main__':
     background = background("sunrise")
     #im1 = clear_background()
     middleground = middleground("desert")
-    foreground = random_placement(background, middleground,random_foreground_selection(choose_list("beach")))
-    #foreground.show()
-    #im2.show()
-    #display = combine_back_middle(background,foreground)
-    #background = combine_back_middle(im,im1)
+    foreground = random_placement(background,middleground,random_foreground_selection(choose_list("beach")))
     foreground.show()
-
-    #background.show()
-    #background.save("background.jpg")
+    foreground.save('foreground.jpg')
