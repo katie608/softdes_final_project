@@ -87,16 +87,28 @@ from PIL import Image, ImageFile
     evening (sunset, so dark gray sillhoutes)
     night (almost complete black/blue sillhoutte)
 """
-def sillhoutte_maker():
-    for i in modified_list:#this is list of randomly chosen elements for final image
-        if time == dawn:
-            im2 = img.point(lambda p: p * .25) #a light gray filter
-        elif time == noon or morning:
-            return
-        elif time == evening:
-            im2 = img.point(lambda p: p * .1) #dark grey filter
-        elif time == night:
-            im2=img.point(lambda :: p*0) #black filter
+# def sillhoutte_maker():
+#     for i in modified_list:#this is list of randomly chosen elements for final image
+#         i.load()
+#         width, height =i.size()
+#         if time == dawn:
+#             im2 = img.point(lambda p: p * .25) #a light gray filter
+#         elif time == noon or morning:
+#             return
+#         elif time == evening:
+#             im2 = img.point(lambda p: p * .1) #dark grey filter
+#         elif time == night:
+#             im2=img.point(lambda p: p*0) #black filter
 
 
-# questions still yet to be fixed: how to do only the image, and not the white space around it?
+img=Image.open("octo.png")
+pixdata=img.load()
+width, height =img.size
+# img.show()
+for y in xrange(height):
+    for x in xrange(width):
+        if pixdata[x, y] == (255, 255, 255, 255):
+            pixdata[x, y] = (lambda p: p*0,lambda p: p*0,lambda p: p*0,lambda p: p*0)
+
+img.show()
+# STOPPED HERE: how to do only the image, and not the white space around it?
