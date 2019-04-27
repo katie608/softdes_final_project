@@ -21,6 +21,8 @@ from PIL import Image, ImageFile
 
 #---------------the new code to implement--------------
 
+
+
 # """color overlay based on time of day, the final layer to put onto image generation
 # current time modes:
 #     dawn (pinkish)
@@ -36,10 +38,8 @@ from PIL import Image, ImageFile
 #         img = Image.open("dawnpink.png")
 #         img.putalpha(10)
 #         img.save()
-#     elif time ==noon: #a pure transparent overlay
-#         img=Image.open("nocolor.png")
-#         img.putalpha(0)
-#         img.save()
+#     elif time == noon or morning: #aka pure transparent overlay, or no overlay
+#         return
 #     elif time == evening:
 #         img=Image.open("eveningyaleblue.png")
 #         img.putalpha(10)
@@ -50,6 +50,8 @@ from PIL import Image, ImageFile
 #         img.save()
 #     else:
 #         return
+
+
 
 
 # """make all white pixels around foreground objects transparent"""
@@ -66,6 +68,8 @@ from PIL import Image, ImageFile
 ## img.save("img2.png", "PNG")
 
 
+
+
 # """save files as progressive jpegs"""
 # #this will be at the very end of the code to
 # #save the final picture as progressive jpeg
@@ -79,24 +83,20 @@ from PIL import Image, ImageFile
 
 """sillhoutes of images based on time:
     dawn (sunrise, so light gray sillhoutes)
-    noon and daytime (no or transparent sillhouttes)
+    noon and morning (no or transparent sillhouttes)
     evening (sunset, so dark gray sillhoutes)
     night (almost complete black/blue sillhoutte)
 """
 def sillhoutte_maker():
+    for i in modified_list:#this is list of randomly chosen elements for final image
+        if time == dawn:
+            im2 = img.point(lambda p: p * .25) #a light gray filter
+        elif time == noon or morning:
+            return
+        elif time == evening:
+            im2 = img.point(lambda p: p * .1) #dark grey filter
+        elif time == night:
+            im2=img.point(lambda :: p*0) #black filter
 
 
-
-
-#this currently makes things transparent
-img = Image.open('octo.png')
-img = img.convert("RGBA")
-pixdata = img.load()
-
-width, height = img.size
-for y in xrange(height):
-    for x in xrange(width):
-        if pixdata[x, y] == (255, 255, 255, 255):
-            pixdata[x, y] = (255, 255, 255, 0)
-img.show()
-img.save("img2.png", "PNG")
+# questions still yet to be fixed: how to do only the image, and not the white space around it?
