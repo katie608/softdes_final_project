@@ -50,7 +50,6 @@ def random_placement(middleground):
 
         position=(startwidth,startheight,endwidth,endheight)
         middleground.paste(element, position)
-
     middleground.show()
 
 random_placement(middleground)
