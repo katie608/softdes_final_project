@@ -116,7 +116,7 @@ def display_output():
     scene = request.form.get('scene')
     date = request.form.get('date')
     dims = request.form.get("dims")
-    pic = pick_gradient(date)
+    pic = "static/"+str(pick_gradient(date))
 
 # eventually going to be:
 # generate_image(filename, scene, date, dims)

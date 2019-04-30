@@ -2,7 +2,7 @@
 <head>
   <title>Output</title>
   <link rel="icon" href="Favicon.JPG" type="image" sizes="16x16">
-  <link rel="stylesheet" type="text/css" href="gradient.css"/>
+  <!-- <link rel="stylesheet" type="text/css" href="gradient.css"/> -->
   <style>
   .center {
     text-align: center;
@@ -28,47 +28,11 @@
     text-align: center;
   }
 
-
-  input[type=text], select {
-    background-color: #4c5170;
-    border: 2px solid #ebecf0;
-    color: #ebecf0;
-    padding: 8px 16px;
-    text-align: center;
-    font-size: 32px;
-    margin: 4px 2px;
-    transition: 0.3s;
-
-  }
-
-  input[type=submit] {
-    background-color: rgba(255, 255, 255, 0);
-    border: 2px solid #ebecf0;
-    color: #ebecf0;
-    padding: 8px 16px;
-    text-align: center;
-    font-size: 32px;
-    margin: 4px 2px;
-    transition: 0.3s;
-  }
-
-  input[type=submit]:hover {
-      background-color: #ebecf0;
-    color: black;
-  }
-
-
-
   body {
-    height: 1000px;
-    /* background: #5f657f; */
-    /* background: linear-gradient(181deg, #0652C5,#D4418E); */
+    background-image: url({{ pic }});
+    /* "static/17.png" */
+    background-repeat: no-repeat;
     /* background: linear-gradient(181deg, #373b59, #787fa0 75%); */
-
-    background:
-      linear-gradient(181deg, #373b59, #787fa0 75%),
-      url("dolphin.png");
-    /* background-image: url("dolphin.svg"); */
   }
 
   a {
