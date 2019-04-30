@@ -1,4 +1,1 @@
 Flask
-PIL
-Image
-requests
