@@ -1,7 +1,4 @@
 Flask
-random
-math
 PIL
 Image
 requests
-os
