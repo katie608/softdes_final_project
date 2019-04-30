@@ -118,8 +118,8 @@ def generate_image(filename, scene, date, dims):
 # code for heroku deployment
 import os
 
- HOST = '0.0.0.0' if 'PORT' in os.environ else '127.0.0.1'
- PORT = int(os.environ.get('PORT', 5000))
+HOST = '0.0.0.0' if 'PORT' in os.environ else '127.0.0.1'
+PORT = int(os.environ.get('PORT', 5000))
 
 # imports flask class
 from flask import Flask, render_template, request
