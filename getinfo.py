@@ -1,7 +1,5 @@
 """Python code using flask to get variables from a website
 Katie Foster TODO:
-Make gradient function
-Implement heroku or somehow get this online
 figure out how to display the output of this program as a background image
 """
 
@@ -44,42 +42,20 @@ def get_time(date):
     minute = date[a+1:a+3]
     return hour, minute
 
-def generate_background(date):
-    """Takes in date and generates a gradient background appropriate for the time
+def pick_gradient(date):
+    """Takes in date and picks a gradient background appropriate for the time
     """
     # use get_time function to extract hour and minute
     hour, minute = get_time(date)
 
-    # dictionary that maps hours to gradients
-    gradient_dict = {
-    "00": "#001538,#000000", # night
-    "01": "#001538,#000000", # night
-    "02": "#001538,#000000", # night
-    "03": "#001538,#000000", # night
-    "04": "#001538,#000000", # night 4am
-    "05": "#62492e,#252a3c,#15192c,#05050e", # 5am
-    "06": "#8c4a5f,#827143,#526884,#18234f", # 6am
-    "07": "#8c4a5f,#526884,#18234f", # 7am
-    "08": "#8abbdb,#000547", # 8am
-    "09": "#bdd8e3, #5782ae, #2a477e", # 9am
-    "10": "#8ec2e5, #5782ae, #2a477e", # day 10am
-    "11": "#8ec2e5, #5782ae, #2a477e", # day
-    "12": "#8ec2e5, #5782ae, #2a477e", # day
-    "13": "#8ec2e5, #5782ae, #2a477e", # day
-    "14": "#8ec2e5, #5782ae, #2a477e", # day
-    "15": "#8ec2e5, #5782ae, #2a477e", # day 3pm
-    "16": "#9a8d8d,#728ca4, #5782ae, #2a477e", # 4pm
-    "17": "#9a8d8d,#b1b09b,#8d9ea0, #586d89, #3e4c6c", # 5pm
-    "18": "##8f4036,#f9bb73,#f1dab6,#aeb7c6,#6c82a7,#203865,#0a1335", # 6pm
-    "19": "#8c3e22,#ad8760,#948975,#79818a,#4a5f82,#21325a,#090e28,#06091a", # 7pm
-    "20": "#6d231d,#723d27,#62492e,#252a3c,#15192c,#05050e", # 8pm
-    "21": "#62492e,#252a3c,#15192c,#05050e,#010414", # 9pm
-    "22": "#001538,#000000", # night 10pm
-    "23": "#001538,#000000", # night
-    }
+    if int(hour) <= 4 or int(hour) > 21:
+        pic = "Night.png"
+    elif int(hour) >= 10 and int(hour) <= 15:
+        pic = "Day.png"
+    else:
+        pic = str(hour)+".png"
 
-    # TODO: use dictionary to generate gradient image
-    pass
+    return pic
 
 def generate_middleground(scene, width, height):
     """Generates a middleground of the image (on top of the gradient background?
@@ -140,13 +116,14 @@ def display_output():
     scene = request.form.get('scene')
     date = request.form.get('date')
     dims = request.form.get("dims")
+    pic = pick_gradient(date)
 
 # eventually going to be:
 # generate_image(filename, scene, date, dims)
 # return render_template('output.html', image=(filename? something?))
 # where image is the background image.
 # for now, this just creates an output page where the variables are rendered
-    return render_template('output.html', scene=scene, date=date, dims=dims)
+    return render_template('output.html', scene=scene, date=date, dims=dims, pic=pic)
 
 
 
