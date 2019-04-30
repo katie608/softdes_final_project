@@ -34,7 +34,7 @@ from PIL import Image, ImageFile
 ##to make sure we have everything neat
 #
 # def timecoloroverlay(): #then put daytime image onto the final image
-#     if time == dawn: #question: is this based on the time recognition in the JavaScript code? Needs integration here
+#    if time == dawn: #question: is this based on the time recognition in the JavaScript code? Needs integration here
 #         img = Image.open("dawnpink.png")
 #         img.putalpha(10)
 #         img.save()
@@ -101,14 +101,22 @@ from PIL import Image, ImageFile
 #             im2=img.point(lambda p: p*0) #black filter
 
 
+
+# STOPPED HERE: how to do only the image, and not the white space around it?
 img=Image.open("octo.png")
 pixdata=img.load()
 width, height =img.size
 # img.show()
 for y in xrange(height):
     for x in xrange(width):
-        if pixdata[x, y] == (255, 255, 255, 255):
-            pixdata[x, y] = (lambda p: p*0,lambda p: p*0,lambda p: p*0,lambda p: p*0)
+        # if pixdata[x, y] == (255, 255, 255, 255):
+        #    pixdata[x, y] = (lambda p: p*0,lambda p: p*0,lambda p: p*0,lambda p: p*0)
+        if pixdata[x,y] != (255, 255, 255, 0.5): #transparent
+            # im2=img.point(lambda p: p*0) #filter over EVERYTHING
+            pixdata[x,y] = (img.point(lambda p: p*0)
+        else: return
 
 img.show()
-# STOPPED HERE: how to do only the image, and not the white space around it?
+
+# if pixels are in photo, add filter
+# if pixels are clear, no filter
