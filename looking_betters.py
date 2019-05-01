@@ -3,7 +3,7 @@ from random import randint
 import math
 import numpy as np
 from PIL import Image, ImageFile
-#modified material in background.py
+# modified material in background.py
 
 # """resize photos"""
 # image=Image.open('octo.png')
@@ -12,6 +12,7 @@ from PIL import Image, ImageFile
 # image.save("smallerocto.jpg")
 # image.show()
 
+
 # """"save image as progressive image"""
 # ImageFile.MAXBLOCK = 2**20
 #
@@ -19,7 +20,16 @@ from PIL import Image, ImageFile
 # img.save("out.jpg", "JPEG", quality=80, optimize=True, progressive=True)
 # img.show()
 
-#---------------the new code to implement--------------
+
+# """save files as progressive jpegs"""
+# #this will be at the very end of the code to
+# #save the final picture as progressive jpeg
+# def final_save_image_settings():
+#     img=Image.open("octo.png") #replace w/ final image from master Python code
+#     img.save("softdes final project", format="JPEG", quality=95, progressive=True)
+#     img.show()
+
+# ---------------the new code to implement--------------
 
 
 
@@ -30,8 +40,8 @@ from PIL import Image, ImageFile
 #     evening (sunset colors)
 #     night (nighttime dark blue colors)
 # """
-##note for when we merge code: we will need to get a folder for color overlay jpegs
-##to make sure we have everything neat
+# #note for when we merge code: we will need to get a folder for color overlay jpegs
+# #to make sure we have everything neat
 #
 # def timecoloroverlay(): #then put daytime image onto the final image
 #    if time == dawn: #question: is this based on the time recognition in the JavaScript code? Needs integration here
@@ -51,32 +61,6 @@ from PIL import Image, ImageFile
 #     else:
 #         return
 
-
-
-
-# """make all white pixels around foreground objects transparent"""
-# img = Image.open('octo.png')
-# img = img.convert("RGBA")
-# pixdata = img.load()
-#
-# width, height = img.size
-# for y in xrange(height):
-#     for x in xrange(width):
-#         if pixdata[x, y] == (255, 255, 255, 255):
-#             pixdata[x, y] = (255, 255, 255, 0)
-# img.show()
-## img.save("img2.png", "PNG")
-
-
-
-
-# """save files as progressive jpegs"""
-# #this will be at the very end of the code to
-# #save the final picture as progressive jpeg
-# def final_save_image_settings():
-#     img=Image.open("octo.png") #replace w/ final image from master Python code
-#     img.save("softdes final project", format="JPEG", quality=95, progressive=True)
-#     img.show()
 
 
 
@@ -101,22 +85,19 @@ from PIL import Image, ImageFile
 #             im2=img.point(lambda p: p*0) #black filter
 
 
-
-# STOPPED HERE: how to do only the image, and not the white space around it?
-img=Image.open("octo.png")
-pixdata=img.load()
-width, height =img.size
-# img.show()
+# """make all white pixels around foreground objects transparent"""
+img = Image.open('octo.png')
+img = img.convert("RGBA")
+pixdata = img.load()
+img.show()
+width, height = img.size
 for y in xrange(height):
     for x in xrange(width):
-        # if pixdata[x, y] == (255, 255, 255, 255):
-        #    pixdata[x, y] = (lambda p: p*0,lambda p: p*0,lambda p: p*0,lambda p: p*0)
-        if pixdata[x,y] != (255, 255, 255, 0.5): #transparent
-            # im2=img.point(lambda p: p*0) #filter over EVERYTHING
-            pixdata[x,y] = (img.point(lambda p: p*0)
-        else: return
+        if pixdata[x,y] == (255, 255, 255, 255): #if see white
+            pixdata[x,y] = (255, 255, 255, 0) #make transparent
+        else:
+            pixel = img.getpixel((x,y))
+            print(type(pixel))
+            #pixdata[x,y] = (pixel[0] * 0,pixel[1] * 0 ,pixel[2]* 0)  #make a for loop here to do filter colors
 
 img.show()
-
-# if pixels are in photo, add filter
-# if pixels are clear, no filter
