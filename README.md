@@ -12,6 +12,6 @@ Prior to cloning the repository, download the PIL image library and Flask by run
 
 To get all the required files necessary to generate images, clone this repository to save all the files and images onto your local drive. To access the interactive platform, go to the website link below. There, you can select options, which will run the files included in this repository and return a background display on the webpage linked below. 
 
-Website Link: https://katie608.github.io/website_gradient_background_generator/templates/index.html
+Website Link: https://katie608.github.io/website_gradient_background_generator
 
 To see a scaled down version of this implemetation using only Javascript, click here: https://katie608.github.io/website_gradient_background_generator/generated.html
