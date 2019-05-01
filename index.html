@@ -1,17 +1,157 @@
-<!doctype html>
+<!DOCTYPE html>
+<html>
 <head>
-  <title>Project Website</title>
+  <title>Generated</title>
   <link rel="icon" href="Favicon.JPG" type="image" sizes="16x16">
-  <link rel="stylesheet" type="text/css" href="projectwebsite.css"/>
+  <link rel="stylesheet" type="text/css" href="website.css"/>
+
 </head>
+<body id="main" style=100%>
 
-<body>
+<body onload="setBackground();">
 
-<div class="center">
+<!-- Credit for stars code to  https://github.com/LunarLogic/auroral  -->
+<div id="stars" class=""></div>
+<div id="moon" class=""></div>
+<div id="moonshadow" class=""></div>
 
 
-<p>Project Website</p>
+<div class="text">
+  <h1>Website Background Generator</h1>
 
+  <h2>Software Design Final Project 2019</h2>
+
+  <p>Katie Foster, Anne Jiang, Shirin Kuppusamy</p>
+
+<h2>Our Project</h2>
+<p>As college students, we are very busy with our studies and so rarely find the time to appreciate the outdoors as much we would like.
+Our product creates a background that mimics the natural light outside to create a visually pleasing color and then to create an environment that uses enjoy looking at when opening a browser. We hope to enhance people’s computer experience and mental well being through our web app display.
+</p>
+
+<h2>Process</h2>
+<p>As we worked to develop this project, we came to several points at which we realized that we should change our approach.
+<br><br>
+  For example, we started off thinking we would use a lot more Javascript than we actually ended up using. This page that you are currently on has no Python, and is just HTML, CSS, and Javascript. Originally, we were planning on generating an image from Python with a clear background, and then displaying it over this page. Unfortunately, when we attempted this approach, the image behaved as though it had an opaque white background instead of a clear one, so we were unable to see the gradient background through the image. So, we ended up taking screenshots of all the different gradient backgrounds created with Javascript and CSS, adding the foreground on top of these images in Python, and then displaying the final image as the background in the output page.
+  <br><br>
+We also ended up using Flask, a web framework for Python, for things that we originally were planning to use Javascript for, such as passing the user’s selected scene into the part of the program that generates and image.
+</p>
+
+<h2>Implementation</h2>
+<p>There were three main parts of our project.</p>
+<p><img src="project-website-icons/welcome.jpg" alt="welcome" class="icon">
+Here is the first part. We did stuff</p>
+<p><img src="project-website-icons/background.jpg" alt="background" class="icon">
+This is the second thing. We also did other stuff</p>
+<p><img src="project-website-icons/heroku.jpg" alt="heroku" class="icon">
+Thing 3: it is on the internet</p>
+
+<h2>Impacts and Privacy</h2>
+<p>Although this website does use the user’s time zone, and therefore some vague information about their location, the program does not store that data at all, so there is no need to worry about anyone stealing or using that data for malicious purposes.</p>
+
+<h2>The Future of this Project</h2>
+<p>TODO</p>
+
+<h2>About Us</h2>
+<p>We are not actually fish.</p>
+<p><img src="project-website-icons/fish2.jpg" alt="Katie" class="icon">
+Katie the fish</p>
+<p><img src="project-website-icons/fish1.jpg" alt="Anne" class="icon">
+Anne the fish</p>
+<p><img src="project-website-icons/fish3.jpg" alt="Shirin" class="icon">
+Shirin the fish</p>
+
+<h2>Sources</h2>
+<p>
+  TODO: Credit for all images
+  <br><br>
+  We got the colors that were used in the gradient background by taking color samples off <a href="https://www.youtube.com/watch?v=SsKAyg28aBU">this</a> time lapse video.
+  <br><br>
+  The stars were taken directly from Lunar Logic’s Auroral Animated Background Gradients. The moon is based off the code for the stars, but modified. <a href="https://github.com/LunarLogic/auroral">Here</a> is the link to Lunar Logic’s repository.
+</p>
 </div>
 
+
+
+
+<script>
+var x = document.getElementById("main");
+var s = document.getElementById("stars");
+var m = document.getElementById("moon");
+var ms = document.getElementById("moonshadow");
+
+function setBackground() {
+  var userTime = new Date();
+  var hour = userTime.getHours();
+  var minute = userTime.getMinutes();
+  if (hour<=4 || hour>21) {
+    // nighttime DONE
+    x.style.background = "linear-gradient(0deg,#001538,#000000)";
+    // trigger stars and moon when it is night
+    s.className = "stars";
+    m.className = "moon";
+    ms.className = "moonshadow";
+  }else if (hour==5) {
+    // 5 am DONE
+    x.style.background = "linear-gradient(0deg,#62492e,#252a3c,#15192c,#05050e)";
+  }else if (hour==6) {
+    // 6 am DONE
+    x.style.background = "linear-gradient(0deg,#8c4a5f,#415772,#0f1738)";
+  }else if (hour==7) {
+    // 7 am DONE
+    x.style.background = "linear-gradient(0deg, #8c4a5f,#526884,#18234f)";
+  }else if (hour==8) {
+    // 8 am DONE
+    x.style.background = "linear-gradient(0deg, #8abbdb,#000547 75%)";
+  }else if (hour==9){
+    // 9 am DONE
+    x.style.background = "linear-gradient(0deg, #bdd8e3, #5782ae, #2a477e)";
+  }else if (hour>=10 && hour<=15) {
+    // 10 am - 3 pm DONE
+    x.style.background = "linear-gradient(0deg, #8ec2e5, #5782ae, #2a477e)";
+  }else if (hour==16) {
+    // 4pm is split DONE
+    if (minute<30){
+      // before 4:30 DONE
+      x.style.background = "linear-gradient(0deg, #bdd8e3, #5782ae, #2a477e)";
+    } else{
+      // after 4:30 DONE
+      x.style.background = "linear-gradient(0deg, #9a8d8d,#728ca4, #5782ae, #2a477e)";
+    }
+  }else if (hour==17) {
+    // 5 pm DONE
+    x.style.background = "linear-gradient(0deg,#9a8d8d,#b1b09b,#8d9ea0, #586d89, #3e4c6c)";
+  }else if (hour==18) {
+    // 6 pm is split DONE
+    if (minute<30){
+      // before 6:30 DONE
+      x.style.background = "linear-gradient(0deg,#8f4036,#f9bb73,#f1dab6,#aeb7c6,#6c82a7,#203865,#0a1335)";
+    } else{
+      // after 6:30 DONE
+      x.style.background = "linear-gradient(0deg,#964134,#f8d7ac,#92a4bc,#223566,#0b1536)";
+    }
+  }else if (hour==19) {
+    // 7 pm split DONE
+    if (minute<30){
+      // before 7:30 DONE
+      x.style.background = "linear-gradient(0deg,#8c3e22,#ad8760,#948975,#79818a,#4a5f82,#21325a,#090e28,#06091a)";
+    } else{
+      // after 7:30 DONE
+      x.style.background = "linear-gradient(0deg,#662714,#7c684d,#4c545e,#0f152c,#060610)";
+    }
+  }else if (hour==20) {
+    // 8 pm DONE
+    x.style.background = "linear-gradient(0deg,#6d231d,#723d27,#62492e,#252a3c,#15192c,#05050e)";
+  }else if (hour==21) {
+    // 9 pm DONE
+    x.style.background = "linear-gradient(0deg,#62492e,#252a3c,#15192c,#05050e,#010414)";
+  }else {
+    x.style.background = "darkblue";
+  }
+  setTimeout(setBackground, 6000);
+}
+
+
+</script>
+
 </body>
+</html>
