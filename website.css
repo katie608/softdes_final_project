@@ -26,11 +26,16 @@ body {
 }
 .icon {
   vertical-align: middle;
+  float: left;
   width: 20%;
   height: auto;
   padding: 5px;
   padding-top: 2px;
   padding-bottom: 2px;
+}
+.icontext {
+  width: 80%;
+  
 }
 
 h1 {
