@@ -1,0 +1,53 @@
+<!doctype html>
+<head>
+  <title>Output</title>
+  <link rel="icon" href="Favicon.JPG" type="image" sizes="16x16">
+  <!-- <link rel="stylesheet" type="text/css" href="gradient.css"/> -->
+  <style>
+  .center {
+    text-align: center;
+  }
+  h1 {
+    color: #ebecf0;
+    font-family: arial;
+    font-size: 96px;
+    padding: 60px;
+    text-align: center;
+  }
+  h2 {
+    color: #ebecf0;
+    font-family: arial;
+    font-size: 48px;
+    padding: 0px;
+    text-align: center;
+  }
+  p  {
+    color: #ebecf0;
+    font-family: arial;
+    font-size: 32px;
+    text-align: center;
+  }
+
+  body {
+    background-image: url({{ pic }});
+    /* "static/17.png" */
+    background-repeat: no-repeat;
+    /* background: linear-gradient(181deg, #373b59, #787fa0 75%); */
+  }
+
+  a {
+    color: #ebecf0;
+  }
+
+  .show {display: block;}
+
+
+
+  </style>
+</head>
+<body>
+  <p>Scene: {{ scene }}</p>
+  <p>Date: {{ date }}</p>
+  <p>Dimentions: {{ dims }}</p>
+  <p>Pic: {{ pic }}
+</body>
