@@ -71,33 +71,26 @@ from PIL import Image, ImageFile
     evening (sunset, so dark gray sillhoutes)
     night (almost complete black/blue sillhoutte)
 """
-# def sillhoutte_maker():
-#     for i in modified_list:#this is list of randomly chosen elements for final image
-#         i.load()
-#         width, height =i.size()
-#         if time == dawn:
-#             im2 = img.point(lambda p: p * .25) #a light gray filter
-#         elif time == noon or morning:
-#             return
-#         elif time == evening:
-#             im2 = img.point(lambda p: p * .1) #dark grey filter
-#         elif time == night:
-#             im2=img.point(lambda p: p*0) #black filter
 
-
-# """make all white pixels around foreground objects transparent"""
-img = Image.open('octo.png')
-img = img.convert("RGBA")
-pixdata = img.load()
-img.show()
-width, height = img.size
-for y in xrange(height):
-    for x in xrange(width):
-        if pixdata[x,y] == (255, 255, 255, 255): #if see white
-            pixdata[x,y] = (255, 255, 255, 0) #make transparent
-        else:
-            pixel = img.getpixel((x,y))
-            print(type(pixel))
-            #pixdata[x,y] = (pixel[0] * 0,pixel[1] * 0 ,pixel[2]* 0)  #make a for loop here to do filter colors
-
-img.show()
+modified_list=["octo.png"]
+def removewhitespace():
+    for i in modified_list:
+        img=Image.open(i)
+        img=img.convert("RGBA")
+        pixdata = img.load()
+        img.show()
+        width, height = img.size
+#the filters
+        if time == dawn:
+            img = img.point(lambda p: p * .25) #a light gray filter
+        elif time == noon or morning:
+            return
+        elif time == evening:
+            img = img.point(lambda p: p * .1) #dark grey filter
+        elif time == night:
+            img=img.point(lambda p: p*0) #black filter
+#make white space transparent
+        for y in xrange(height):
+            for x in xrange(width):
+                if pixdata[x,y] == (255, 255, 255, 255): #if see white
+                    pixdata[x,y] = (255, 255, 255, 0) #make transparent
