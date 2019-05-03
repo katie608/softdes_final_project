@@ -179,6 +179,7 @@ def generate_image(filename, scene, date, dims):
 
 # code for heroku deployment
 import os
+import time
 
 HOST = '0.0.0.0' if 'PORT' in os.environ else '127.0.0.1'
 PORT = int(os.environ.get('PORT', 5000))
@@ -210,6 +211,8 @@ def display_output():
 # return render_template('output.html', image=(filename? something?))
 # where image is the background image.
 # for now, this just creates an output page where the variables are rendered
+
+    time.sleep(5)
     return render_template('output.html', scene=scene, date=date, dims=dims, pic=pic)
 
 if __name__ == '__main__':

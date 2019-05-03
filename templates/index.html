@@ -8,6 +8,17 @@
     text-align: center;
     padding-top: 10%;
   }
+
+  .invisable {
+    color: rgba(0,0,0,0)
+  }
+.loading {
+  color: #ebecf0;
+  font-family: arial;
+  font-size: 32px;
+  text-align: center;
+}
+
   h1 {
     color: #ebecf0;
     font-family: arial;
@@ -154,15 +165,20 @@
   <br><br>
   <input name="date" type="hidden">
   <input id="dims" name="dims" type="hidden">
-  <input type="submit">
+  <input type="submit" onclick="submit()">
   </form>
 
+<div id="loadtext" class="invisable">Generating Image...</div>
 </div>
 <script>
 
 var dims = document.getElementById("dims");
-
 dims.value =  window.innerWidth + "," + window.innerHeight;
+
+var l = doccument.getElementById("loadtext");
+function submit() {
+  l.className = "loading";
+}
 
 </script>
 
