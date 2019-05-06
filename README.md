@@ -9,6 +9,7 @@ Prior to cloning the repository, download the PIL image library and Flask by run
 
 `$ pip install Flask`
 
+`$ pip install python-resize-image`
 
 To get all the required files necessary to generate images, clone this repository to save all the files and images onto your local drive. To access the interactive platform, go to the website link below. There, you can select options, which will run the files included in this repository and return a background display on the webpage linked below. 
 
