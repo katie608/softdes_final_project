@@ -26,7 +26,7 @@ body {
 }
 .icon {
   vertical-align: middle;
-  float: left;
+  /* float: left; */
   width: 20%;
   height: auto;
   padding: 5px;
@@ -35,7 +35,7 @@ body {
 }
 .icontext {
   width: 80%;
-  
+
 }
 
 h1 {
