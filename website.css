@@ -26,17 +26,24 @@ body {
 }
 .icon {
   vertical-align: middle;
-  /* float: left; */
+  display: inline-inline-table;
+  float: left;
   width: 20%;
   height: auto;
   padding: 5px;
+  padding-right: 20px;
   padding-top: 2px;
   padding-bottom: 2px;
+  
 }
 .icontext {
-  width: 80%;
-
+  width: 100%;
+  padding: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
+
+
 
 h1 {
   color: #ebecf0;
