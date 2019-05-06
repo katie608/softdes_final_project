@@ -79,29 +79,21 @@ def middleground(s):
         return middleground
 
 def removewhitespace(object,date):
+    """
+    make white space transparent
+    """
     hour, minute = get_time(date)
     hour = int(hour)
+    hour = 16
     img=Image.open(object)
     img=img.convert("RGBA")
     pixdata = img.load()
     width, height = img.size
-#the filters
-    if hour >4 and hour < 10:
-        img = img.point(lambda p: p * .25) #a light gray filter
-        return img
-    elif hour >= 10 and hour <= 15:
-        return img
-    elif hour > 15 and hour <= 21:
-        img = img.point(lambda p: p * .1) #dark grey filter
-        return img
-    elif hour <= 4 or hour > 21:
-        img=img.point(lambda p: p*0) #black filter
-        return img
-#make white space transparent
-    #for y in range(height):
-        #for x in range(width):
-            #if pixdata[x,y] == (255, 255, 255, 255): #if see white
-                #pixdata[x,y] = (255, 255, 255, 0) #make transparent
+    for y in range(height):
+        for x in range(width):
+            if pixdata[x,y] == (255, 255, 255, 255): #if see white
+                pixdata[x,y] = (255, 255, 255, 0) #make transparent
+    return img
 
 def choose_list(s):
     """
@@ -148,8 +140,9 @@ def random_placement(background,middleground,modified_list,dims,date):
     #print(w3,h3)
     print(modified_list)
     for i in modified_list:
-        element = Image.open(i)
-        #element=removewhitespace(i,date)
+        #element = Image.open(i)
+        element=removewhitespace(i,date)
+        element.show()
         element.thumbnail((400,100))
         w,h = element.size
         startwidth=randint(0,(width-w))
@@ -158,7 +151,7 @@ def random_placement(background,middleground,modified_list,dims,date):
         endheight=startheight+h
 
         position=(startwidth,startheight,endwidth,endheight)
-        middleground.paste(element, position)
+        middleground.paste(element,position,element)
     background.paste(middleground,(0,int(h2)-height))
 
     return background
