@@ -13,11 +13,11 @@ from PIL import Image, ImageFile
 # image.show()
 
 
-# """"save image as progressive image"""
-# ImageFile.MAXBLOCK = 2**20
-#
+ """"save image as progressive image"""
+ #ImageFile.MAXBLOCK = 2**20
+
 # img = Image.open("octo.png")
-# img.save("out.jpg", "JPEG", quality=80, optimize=True, progressive=True)
+ #img.save("out.jpg", "JPEG", quality=80, optimize=True, progressive=True)
 # img.show()
 
 
@@ -26,7 +26,7 @@ from PIL import Image, ImageFile
 # #save the final picture as progressive jpeg
 # def final_save_image_settings():
 #     img=Image.open("octo.png") #replace w/ final image from master Python code
-#     img.save("softdes final project", format="JPEG", quality=95, progressive=True)
+    img.save("softdes final project", format="JPEG", quality=95, progressive=True)
 #     img.show()
 
 # ---------------the new code to implement--------------
