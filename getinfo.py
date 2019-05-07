@@ -12,6 +12,8 @@ import random
 from random import randint
 import math
 import numpy as np
+import os
+import glob #for deleting files
 from PIL import Image, ImageFile
 from resizeimage import resizeimage
 
@@ -46,6 +48,29 @@ def get_time(date):
     hour = date[a-2:a]
     minute = date[a+1:a+3]
     return hour, minute
+
+
+def strip_date(date):
+    """
+    >>> strip_date("Tue May 07 2019 07:22:06 GMT-1000 (Pacific Honolulu Standard Time)")
+    'May072019072206'
+    """
+    strippeddate = date.replace(" ", "")
+    strippeddate = strippeddate.replace(":","")
+    strippeddate = strippeddate[3:18]
+    return strippeddate
+
+def clear_bydate():
+    """deletes all files in the folder within static called bydate
+    Does not currently work"""
+    # files = glob.glob('/static/bydate')
+    # for f in files:
+    #     os.remove(f)
+
+    for root, dirs, files in os.walk('/static/bydate'):
+        for name in files:
+            os.remove(name)
+
 
 def background(date):
     """Takes in date and picks a gradient background appropriate for the time
@@ -108,7 +133,7 @@ def choose_list(s):
     returns a list of filenames of images of objects that are present in each
     environment.
     """
-    ONE=["octo.png", "tree.png", "sanddollar2.png", "plant.png", "hermitcrab2.png", "hermitcrab.png", "driftwood.png", "driftwood2.png", "driftwood1.png", "crab.png", "beachball.png", "bag.png"] #BEACH
+    ONE=["octo.png", "tree.png", "sanddollar2.png", "plant.png", "hermitcrab2.png", "hermitcrab.png", "driftwood.png", "driftwood2.png", "crab.png", "beachball.png", "bag.png"] #BEACH
     TWO=["yew.png", "wildflowers.png", "wildflowers2.png", "poppies.png", "mushroom3.png", "mushroom2.png", "fox1.png","wildflowers3.png"] #FOREST
     THREE=["flowershrub.png", "juniper.png", "planto.png", "mountaingoat.png", "large_thumbnail.png", "chipmunk1.png", "chipmunk2.png", "hummingbird.png", "shrubby.png","chipmunk3.png", "chipmunk4.png", "flyingsquirrel.png", "ferret.png", "bunny.png", "fernplant.png", "yew.png", "mountaingoat.png", "mrfern.png", "flowershrub.png"] #MOUNTAIN
     FOUR=["wildcat2.png", "wallace.png", "spikes.png", "optimisticlizard.png", "night.png", "lizardlizarding.png", "lizard2.png", "jackrabbit.png", "huhwhat-lizard.png", "grumpylizard.png", "georgy.png", "fred.png", "flowercacti.png", "fennec2.png", "cactus2.png", "cactus-transparent-prickly-pear-3.png", "cactflowery.png"] #"cact.jpg"#DESERT
@@ -176,7 +201,6 @@ def generate_image(filename, scene, date, dims):
 """________________________Code for making Flask work________________________"""
 
 # code for heroku deployment
-import os
 import time
 
 HOST = '0.0.0.0' if 'PORT' in os.environ else '127.0.0.1'
@@ -186,7 +210,7 @@ PORT = int(os.environ.get('PORT', 5000))
 from flask import Flask, render_template, request
 import requests
 # created an instance of the flask class
-# first argument is the name of the application’s module or package
+# first argument is the name of the application's module or package
 app = Flask(__name__)
 
 # tells which url should trigger our function. In this case, it is / because
@@ -201,9 +225,8 @@ def display_output():
     scene = request.form.get('scene')
     date = request.form.get('date')
     dims = request.form.get("dims")
-    pic = "static/Day/"+str(scene)+".png"
+    pic = "static/bydate/"+str(strip_date(date))+".png"
     image, name = generate_image(pic, scene, date, dims)
-
 
 
     time.sleep(0.5)
