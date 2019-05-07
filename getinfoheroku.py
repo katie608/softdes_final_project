@@ -4,15 +4,15 @@ This is just for demonstration purposes and does not actually generate an image
 """
 
 
-def get_time(date):
-    """takes in date from javascript/flask, and sets the variables hour and minute
-    to their appropriate values
+def get_hour(date):
+    """takes in date from javascript/flask, and sets the variable hour to
+    what the hour is
 
-    >>> get_time("Tue Apr 23 2019 23:19:57 GMT-0400 (Eastern Daylight Time)")
-    ('23', '19')
+    >>> get_hour("Tue Apr 23 2019 23:19:57 GMT-0400 (Eastern Daylight Time)")
+    '23'
 
-    >>> get_time("Wed Apr 24 2019 06:59:38 GMT+0300 (Asia Qatar Standard Time)")
-    ('06', '59')
+    >>> get_hour("Wed Apr 24 2019 06:59:38 GMT+0300 (Asia Qatar Standard Time)")
+    '06'
     """
     a = date.find(":")
     hour = date[a-2:a]
@@ -49,14 +49,14 @@ def display_output():
     date = request.form.get('date')
     dims = request.form.get("dims")
 
-    hour, minute = get_time(date)
+    hour = get_hour(date)
     hour = int(hour)
     if hour <= 4 or hour > 21:
-        pic = "static/"+"Day/"+str(scene)+".png"
-    elif hour >= 10 and hour <= 15:
         pic = "static/"+"Night/"+str(scene)+".png"
+    elif hour >= 10 and hour <= 15:
+        pic = "static/"+"Day/"+str(scene)+".png"
     else:
-        background = Image.open("static/"+str(hour)+"/"+str(scene)+".png")
+        pic = "static/"+str(hour)+"/"+str(scene)+".png"
 
 
     time.sleep(0.5)
