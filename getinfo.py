@@ -73,6 +73,11 @@ def middleground(s):
     Mountains -> Mountains image
     Desert -> Dry Sand image
     """
+    if(s == "Beach"):
+        middleground = Image.open("ocean.png")
+        middleground = resizeimage.resize_cover(middleground,(2000,300))
+        #middleground.crop((100,100,100,100))
+        return middleground
     if(s == "Desert"):
         middleground = Image.open("sand.jpg")
         middleground = resizeimage.resize_cover(middleground,(2000,300))
@@ -128,7 +133,7 @@ def choose_list(s):
     returns a list of filenames of images of objects that are present in each
     environment.
     """
-    ONE=["octo.png", "beachball.jpg", "eagle.png", "tree.png", "sanddollar2.png", "plant.png", "hermitcrab2.png", "hermitcrab.png", "driftwood.png", "driftwood2.png", "driftwood1.png", "crab.png", "beachball.png", "bag.png"] #BEACH
+    ONE=["octo.png", "tree.png", "sanddollar2.png", "plant.png", "hermitcrab2.png", "hermitcrab.png", "driftwood.png", "driftwood2.png", "driftwood1.png", "crab.png", "beachball.png", "bag.png"] #BEACH
     TWO=["yew.png", "wildflowers.png", "wildflowers2.png", "trees.png", "poppies.png", "mushroom3.png", "mushroom2.png", "mushroom.png", "fox2.png", "fox1.png", "fox.png", "forest1.png", "forest.png", "forest_sillhoutte.png", "wildflowers3.png"] #FOREST
     THREE=["flowershrub.png", "juniper.png", "planto.png", "mountaingoat.png", "large_thubmnail.png", "chipmunk1png", "chipmunk2.png", "hummgbird.png", "shrubby.png", "aaa.png", "chipmunk3.png", "chipmunk4.png", "flyingsquirrel1.png", "ferret.png", "bunny.png", "fernplant.png", "yew.png", "images.png", "mountaingoat.png", "mrfern.png", "flowershrub.png"] #MOUNTAIN
     FOUR=["yucca.png", "wildcat2.png", "wallace.png", "spikes.png", "optimisticlizard.png", "night.png", "lizardlizarding.png", "lizard2.png", "jackrabbit.png", "huhwhat-lizard.png", "grumpylizard.png", "georgy.png", "fred.png", "flowercacti.png", "fennec2.png", "cactus2.png", "cactus-transparent-prickly-pear-3.png", "cactflowery.png"] #"cact.jpg"#DESERT
