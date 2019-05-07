@@ -53,7 +53,6 @@ def background(date):
     # use get_time function to extract hour and minute
     hour, minute = get_time(date)
     hour = int(hour)
-    hour = 11
     if hour <= 4 or hour > 21:
         background = Image.open("static/Night.png")
         return background
@@ -81,17 +80,19 @@ def middleground(s):
         middleground = Image.open("forest.png")
         middleground = resizeimage.resize_cover(middleground,(2000,350))
         return middleground
+    if(s == "Mountain"):
+        middleground = Image.open("mountain.png")
+        middleground = resizeimage.resize_cover(middleground,(2000,221))
+        return middleground
     if(s == "Desert"):
         middleground = Image.open("sand.jpg")
         middleground = resizeimage.resize_cover(middleground,(2000,300))
         return middleground
 
-def removewhitespace(object,date):
+def removewhitespace(object):
     """
     make white space transparent
     """
-    hour, minute = get_time(date)
-    hour = int(hour)
     img=Image.open("Foreground Objects/" + object)
     img=img.convert("RGBA")
     pixdata = img.load()
@@ -101,34 +102,6 @@ def removewhitespace(object,date):
             if pixdata[x,y] == (255, 255, 255, 255): #if see white
                 pixdata[x,y] = (255, 255, 255, 0) #make transparent
     return img
-    # if hour <= 4 or hour > 21:
-    #      filter = Image.open("darkblue.png")
-    #      filter.show()
-    #      filter.putalpha(50)
-    #      filter.show()
-    #      filter.thumbnail((width,height))
-    #      #filter = filter.load()
-    #      img1 = Image.composite(img,filter,img)
-    #      #img.paste(filter,(0,0,int(width),int(height)))
-    #      return img1,filter
-    # elif hour >= 10 and hour <= 15:
-    #      return img
-    # elif hour > 4 and hour < 10:
-    #     filter = Image.open("dawnpink.png")
-    #     filter.putalpha(10)
-    #     filter.thumbnail((width,height))
-    #     #filter = filter.load()
-    #     img = Image.composite(img,filter,img)
-    #     #img.paste(filter,(0,0,int(width),int(height)))
-    #     return img,filter
-    # elif hour > 15 and hour <= 21:
-    #     filter = Image.open("eveningyaleblue.png")
-    #     filter.putalpha(10)
-    #     filter.thumbnail((width,height))
-    #     #filter = filter.load()
-    #     img = Image.composite(img,filter,img)
-    #     #img.paste(filter,(0,0,int(width),int(height)))
-    #     return img,filter
 
 def choose_list(s):
     """
@@ -137,8 +110,8 @@ def choose_list(s):
     """
     ONE=["octo.png", "tree.png", "sanddollar2.png", "plant.png", "hermitcrab2.png", "hermitcrab.png", "driftwood.png", "driftwood2.png", "driftwood1.png", "crab.png", "beachball.png", "bag.png"] #BEACH
     TWO=["yew.png", "wildflowers.png", "wildflowers2.png", "poppies.png", "mushroom3.png", "mushroom2.png", "fox1.png","wildflowers3.png"] #FOREST
-    THREE=["flowershrub.png", "juniper.png", "planto.png", "mountaingoat.png", "large_thubmnail.png", "chipmunk1.png", "chipmunk2.png", "hummgbird.png", "shrubby.png", "aaa.png", "chipmunk3.png", "chipmunk4.png", "flyingsquirrel1.png", "ferret.png", "bunny.png", "fernplant.png", "yew.png", "images.png", "mountaingoat.png", "mrfern.png", "flowershrub.png"] #MOUNTAIN
-    FOUR=["yucca.png", "wildcat2.png", "wallace.png", "spikes.png", "optimisticlizard.png", "night.png", "lizardlizarding.png", "lizard2.png", "jackrabbit.png", "huhwhat-lizard.png", "grumpylizard.png", "georgy.png", "fred.png", "flowercacti.png", "fennec2.png", "cactus2.png", "cactus-transparent-prickly-pear-3.png", "cactflowery.png"] #"cact.jpg"#DESERT
+    THREE=["flowershrub.png", "juniper.png", "planto.png", "mountaingoat.png", "large_thumbnail.png", "chipmunk1.png", "chipmunk2.png", "hummingbird.png", "shrubby.png","chipmunk3.png", "chipmunk4.png", "flyingsquirrel.png", "ferret.png", "bunny.png", "fernplant.png", "yew.png", "mountaingoat.png", "mrfern.png", "flowershrub.png"] #MOUNTAIN
+    FOUR=["wildcat2.png", "wallace.png", "spikes.png", "optimisticlizard.png", "night.png", "lizardlizarding.png", "lizard2.png", "jackrabbit.png", "huhwhat-lizard.png", "grumpylizard.png", "georgy.png", "fred.png", "flowercacti.png", "fennec2.png", "cactus2.png", "cactus-transparent-prickly-pear-3.png", "cactflowery.png"] #"cact.jpg"#DESERT
     if s == "Beach":
         return ONE
     if s == "Forest":
@@ -159,7 +132,7 @@ def random_foreground_selection(rand_obj):
     list_of_random_images=random.sample(rand_obj,num_to_select)
     return(list_of_random_images)
 
-def random_placement(background,middleground,modified_list,dims,date,scene):
+def random_placement(background,middleground,modified_list,dims,scene):
     """
     Takes in an image and a list of random objects and returns a compressed
     image with the objects randomly placed on the image passed in.
@@ -170,7 +143,7 @@ def random_placement(background,middleground,modified_list,dims,date,scene):
     print(width,height)
     print(modified_list)
     for i in modified_list:
-        element=removewhitespace(i,date)
+        element=removewhitespace(i)
         element.thumbnail((400,100))
         w,h = element.size
         if scene == "Forest":
@@ -193,7 +166,7 @@ def generate_image(filename, scene, date, dims):
     """
     back = background(date)
     middle = middleground(scene)
-    fore = random_placement(back,middle,random_foreground_selection(choose_list(scene)),dims,date,scene)
+    fore = random_placement(back,middle,random_foreground_selection(choose_list(scene)),dims,scene)
     n = "static/"+filename
     fore.save(n)
     return fore,n
