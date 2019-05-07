@@ -79,7 +79,7 @@ def middleground(s):
         return middleground
     if(s == "Forest"):
         middleground = Image.open("forest.png")
-        middleground = resizeimage.resize_cover(middleground,(2000,300))
+        middleground = resizeimage.resize_cover(middleground,(2000,350))
         return middleground
     if(s == "Desert"):
         middleground = Image.open("sand.jpg")
@@ -136,7 +136,7 @@ def choose_list(s):
     environment.
     """
     ONE=["octo.png", "tree.png", "sanddollar2.png", "plant.png", "hermitcrab2.png", "hermitcrab.png", "driftwood.png", "driftwood2.png", "driftwood1.png", "crab.png", "beachball.png", "bag.png"] #BEACH
-    TWO=["yew.png", "wildflowers.png", "wildflowers2.png", "trees.png", "poppies.png", "mushroom3.png", "mushroom2.png", "fox1.png","wildflowers3.png"] #FOREST
+    TWO=["yew.png", "wildflowers.png", "wildflowers2.png", "poppies.png", "mushroom3.png", "mushroom2.png", "fox1.png","wildflowers3.png"] #FOREST
     THREE=["flowershrub.png", "juniper.png", "planto.png", "mountaingoat.png", "large_thubmnail.png", "chipmunk1.png", "chipmunk2.png", "hummgbird.png", "shrubby.png", "aaa.png", "chipmunk3.png", "chipmunk4.png", "flyingsquirrel1.png", "ferret.png", "bunny.png", "fernplant.png", "yew.png", "images.png", "mountaingoat.png", "mrfern.png", "flowershrub.png"] #MOUNTAIN
     FOUR=["yucca.png", "wildcat2.png", "wallace.png", "spikes.png", "optimisticlizard.png", "night.png", "lizardlizarding.png", "lizard2.png", "jackrabbit.png", "huhwhat-lizard.png", "grumpylizard.png", "georgy.png", "fred.png", "flowercacti.png", "fennec2.png", "cactus2.png", "cactus-transparent-prickly-pear-3.png", "cactflowery.png"] #"cact.jpg"#DESERT
     if s == "Beach":
@@ -159,7 +159,7 @@ def random_foreground_selection(rand_obj):
     list_of_random_images=random.sample(rand_obj,num_to_select)
     return(list_of_random_images)
 
-def random_placement(background,middleground,modified_list,dims,date):
+def random_placement(background,middleground,modified_list,dims,date,scene):
     """
     Takes in an image and a list of random objects and returns a compressed
     image with the objects randomly placed on the image passed in.
@@ -173,8 +173,12 @@ def random_placement(background,middleground,modified_list,dims,date):
         element=removewhitespace(i,date)
         element.thumbnail((400,100))
         w,h = element.size
-        startwidth=randint(5,(width-w))
-        startheight=randint(5,(height-h))
+        if scene == "Forest":
+            startwidth=randint(0,(width-w))
+            startheight=randint(0,(height-h-30))
+        else:
+            startwidth=randint(0,(width-w))
+            startheight=randint(0,(height-h))
         endwidth=startwidth+w
         endheight=startheight+h
 
@@ -189,7 +193,7 @@ def generate_image(filename, scene, date, dims):
     """
     back = background(date)
     middle = middleground(scene)
-    fore = random_placement(back,middle,random_foreground_selection(choose_list(scene)),dims,date)
+    fore = random_placement(back,middle,random_foreground_selection(choose_list(scene)),dims,date,scene)
     n = "static/"+filename
     fore.save(n)
     return fore,n
@@ -228,7 +232,7 @@ def display_output():
     pic = name
 
 
-    time.sleep(5)
+    #time.sleep(5)
     return render_template('output.html', scene=scene, date=date, dims=dims, pic=pic)
 
 if __name__ == '__main__':
