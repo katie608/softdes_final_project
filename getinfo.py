@@ -84,7 +84,6 @@ def removewhitespace(object,date):
     """
     hour, minute = get_time(date)
     hour = int(hour)
-    hour = 16
     img=Image.open(object)
     img=img.convert("RGBA")
     pixdata = img.load()
@@ -94,16 +93,44 @@ def removewhitespace(object,date):
             if pixdata[x,y] == (255, 255, 255, 255): #if see white
                 pixdata[x,y] = (255, 255, 255, 0) #make transparent
     return img
+    # if hour <= 4 or hour > 21:
+    #      filter = Image.open("darkblue.png")
+    #      filter.show()
+    #      filter.putalpha(50)
+    #      filter.show()
+    #      filter.thumbnail((width,height))
+    #      #filter = filter.load()
+    #      img1 = Image.composite(img,filter,img)
+    #      #img.paste(filter,(0,0,int(width),int(height)))
+    #      return img1,filter
+    # elif hour >= 10 and hour <= 15:
+    #      return img
+    # elif hour > 4 and hour < 10:
+    #     filter = Image.open("dawnpink.png")
+    #     filter.putalpha(10)
+    #     filter.thumbnail((width,height))
+    #     #filter = filter.load()
+    #     img = Image.composite(img,filter,img)
+    #     #img.paste(filter,(0,0,int(width),int(height)))
+    #     return img,filter
+    # elif hour > 15 and hour <= 21:
+    #     filter = Image.open("eveningyaleblue.png")
+    #     filter.putalpha(10)
+    #     filter.thumbnail((width,height))
+    #     #filter = filter.load()
+    #     img = Image.composite(img,filter,img)
+    #     #img.paste(filter,(0,0,int(width),int(height)))
+    #     return img,filter
 
 def choose_list(s):
     """
-    returns a list of random objects that are present in each environment
+    returns a list of filenames of images of objects that are present in each
     environment.
     """
-    ONE=["octo.png", "beachball.jpg", "eagle.png"] #BEACH
-    TWO=[] #FOREST
+    ONE=["octo.png", "beachball.jpg", "eagle.png", "tree.png", "sanddollar2.png", "plant.png", "hermitcrab2.png", "hermitcrab.png", "driftwood.png", "driftwood2.png", "driftwood1.png", "crab.png", "beachball.png", "bag.png"] #BEACH
+    TWO=["yew.png", "wildflowers.png", "wildflowers2.png", "trees.png", "poppies.png", "mushroom3.png", "mushroom2.png", "mushroom.png", "fox2.png", "fox1.png", "fox.png", "forest1.png", "forest.png", "forest_sillhoutte.png", "wildflowers3.png"] #FOREST
     THREE=[] #MOUNTAIN
-    FOUR=[] #DESERT
+    FOUR=["yucca.png", "wildcat2.png", "wildcat1.png", "wallace.png", "spikes.png", "optimisticlizard.png", "night.png", "lizardlizard.png", "lizard2.png", "jackrabbit.png", "huhwhat-lizard.png", "grumpylizard.png", "georgy.png", "fred.png", "flowercacti.png", "fennec2.png", "cactus2.png", "cactus-transparent-prickly-pear-3.png", "cactflowery.png",] #"cact.jpg"#DESERT
     if s == "Desert":
         return ONE
     if s == "forest":
@@ -125,7 +152,6 @@ def random_foreground_selection(rand_obj):
     return(list_of_random_images)
 
 def random_placement(background,middleground,modified_list,dims,date):
-
     """
     Takes in an image and a list of random objects and returns a compressed
     image with the objects randomly placed on the image passed in.
@@ -142,11 +168,13 @@ def random_placement(background,middleground,modified_list,dims,date):
     for i in modified_list:
         #element = Image.open(i)
         element=removewhitespace(i,date)
-        element.show()
+
+        #element.show()
         element.thumbnail((400,100))
+        #filter.thumbnail((400,100))
         w,h = element.size
-        startwidth=randint(0,(width-w))
-        startheight=randint(0,(height-h))
+        startwidth=randint(5,(width-w))
+        startheight=randint(5,(height-h))
         endwidth=startwidth+w
         endheight=startheight+h
 
@@ -199,11 +227,6 @@ def display_output():
     image, name = generate_image("background.png", scene, date, dims)
     pic = name
 
-# eventually going to be:
-# generate_image(filename, scene, date, dims)
-# return render_template('output.html', image=(filename? something?))
-# where image is the background image.
-# for now, this just creates an output page where the variables are rendered
 
     time.sleep(5)
     return render_template('output.html', scene=scene, date=date, dims=dims, pic=pic)
