@@ -87,13 +87,11 @@ def removewhitespace(object,date):
     img=Image.open(object)
     img=img.convert("RGBA")
     pixdata = img.load()
-    img.show()
     width, height = img.size
     for y in range(height):
         for x in range(width):
             if pixdata[x,y] == (255, 255, 255, 255): #if see white
                 pixdata[x,y] = (255, 255, 255, 0) #make transparent
-    img.show()
     return img
     # if hour <= 4 or hour > 21:
     #      filter = Image.open("darkblue.png")
