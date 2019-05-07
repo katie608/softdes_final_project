@@ -128,9 +128,9 @@ def choose_list(s):
     environment.
     """
     ONE=["octo.png", "beachball.jpg", "eagle.png", "tree.png", "sanddollar2.png", "plant.png", "hermitcrab2.png", "hermitcrab.png", "driftwood.png", "driftwood2.png", "driftwood1.png", "crab.png", "beachball.png", "bag.png"] #BEACH
-    TWO=["yew.png", "wildflowers.png", "wildflowers2.png", "trees.png", "poppies.png", "mushroom3.png", "mushroom2.png", "mushroom.png", "fox2.png", "fox1.png", "fox.png", "forest1.png", "forest.png", "forest_sillhoutte.png", "wildflowers3.png"] #FOREST
+    TWO=["yew.png", "wildflowers.png", "wildflowers2.png", "trees.png", "poppies.png", "mushroom3.png", "mushroom2.png", "mushroom.png", "fox2.png", "fox1.png", "fox.png","wildflowers3.png"] #FOREST
     THREE=[] #MOUNTAIN
-    FOUR=["yucca.png", "wildcat2.png", "wildcat1.png", "wallace.png", "spikes.png", "optimisticlizard.png", "night.png", "lizardlizard.png", "lizard2.png", "jackrabbit.png", "huhwhat-lizard.png", "grumpylizard.png", "georgy.png", "fred.png", "flowercacti.png", "fennec2.png", "cactus2.png", "cactus-transparent-prickly-pear-3.png", "cactflowery.png",] #"cact.jpg"#DESERT
+    FOUR=["yucca.png", "wildcat2.png", "wildcat1.png", "wallace.png", "spikes.png", "optimisticlizard.png", "night.png", "lizardlizard.png", "lizard2.png", "jackrabbit.png", "huhwhat-lizard.png", "grumpylizard.png", "georgy.png", "fred.png", "flowercacti.png", "fennec2.png", "cactus2.png", "cactus-transparent-prickly-pear-3.png", "cactflowery.png",] #DESERT
     if s == "Desert":
         return ONE
     if s == "forest":
