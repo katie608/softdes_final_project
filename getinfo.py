@@ -205,7 +205,7 @@ def display_output():
     pic = name
 
 
-    #time.sleep(5)
+    time.sleep(5)
     return render_template('output.html', scene=scene, date=date, dims=dims, pic=pic)
 
 if __name__ == '__main__':
