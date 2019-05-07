@@ -53,6 +53,7 @@ def background(date):
     # use get_time function to extract hour and minute
     hour, minute = get_time(date)
     hour = int(hour)
+    hour = 11
     if hour <= 4 or hour > 21:
         background = Image.open("static/Night.png")
         return background
@@ -84,7 +85,7 @@ def removewhitespace(object,date):
     """
     hour, minute = get_time(date)
     hour = int(hour)
-    img=Image.open(object)
+    img=Image.open("Foreground Objects/" + object)
     img=img.convert("RGBA")
     pixdata = img.load()
     width, height = img.size
@@ -127,17 +128,17 @@ def choose_list(s):
     returns a list of filenames of images of objects that are present in each
     environment.
     """
-  ONE=["octo.png", "beachball.jpg", "eagle.png", "tree.png", "sanddollar2.png", "plant.png", "hermitcrab2.png", "hermitcrab.png", "driftwood.png", "driftwood2.png", "driftwood1.png", "crab.png", "beachball.png", "bag.png"] #BEACH
-  TWO=["yew.png", "wildflowers.png", "wildflowers2.png", "trees.png", "poppies.png", "mushroom3.png", "mushroom2.png", "mushroom.png", "fox2.png", "fox1.png", "fox.png", "forest1.png", "forest.png", "forest_sillhoutte.png", "wildflowers3.png"] #FOREST
-  THREE=["flowershrub.png", "juniper.png", "planto.png", "mountaingoat.png", "large_thubmnail.png", "chipmunk1png", "chipmunk2.png", "hummgbird.png", "shrubby.png", "aaa.png", "chipmunk3.png", "chipmunk4.png", "flyingsquirrel1.png", "ferret.png", "bunny.png", "fernplant.png", "yew.png", "images.png", "mountaingoat.png", "mrfern.png", "flowershrub.png"] #MOUNTAIN
-  FOUR=["yucca.png", "wildcat2.png", "wildcat1.png", "wallace.png", "spikes.png", "optimisticlizard.png", "night.png", "lizardlizard.png", "lizard2.png", "jackrabbit.png", "huhwhat-lizard.png", "grumpylizard.png", "georgy.png", "fred.png", "flowercacti.png", "fennec2.png", "cactus2.png", "cactus-transparent-prickly-pear-3.png", "cactflowery.png"] #"cact.jpg"#DESERT
-    if s == "Desert":
+    ONE=["octo.png", "beachball.jpg", "eagle.png", "tree.png", "sanddollar2.png", "plant.png", "hermitcrab2.png", "hermitcrab.png", "driftwood.png", "driftwood2.png", "driftwood1.png", "crab.png", "beachball.png", "bag.png"] #BEACH
+    TWO=["yew.png", "wildflowers.png", "wildflowers2.png", "trees.png", "poppies.png", "mushroom3.png", "mushroom2.png", "mushroom.png", "fox2.png", "fox1.png", "fox.png", "forest1.png", "forest.png", "forest_sillhoutte.png", "wildflowers3.png"] #FOREST
+    THREE=["flowershrub.png", "juniper.png", "planto.png", "mountaingoat.png", "large_thubmnail.png", "chipmunk1png", "chipmunk2.png", "hummgbird.png", "shrubby.png", "aaa.png", "chipmunk3.png", "chipmunk4.png", "flyingsquirrel1.png", "ferret.png", "bunny.png", "fernplant.png", "yew.png", "images.png", "mountaingoat.png", "mrfern.png", "flowershrub.png"] #MOUNTAIN
+    FOUR=["yucca.png", "wildcat2.png", "wallace.png", "spikes.png", "optimisticlizard.png", "night.png", "lizardlizarding.png", "lizard2.png", "jackrabbit.png", "huhwhat-lizard.png", "grumpylizard.png", "georgy.png", "fred.png", "flowercacti.png", "fennec2.png", "cactus2.png", "cactus-transparent-prickly-pear-3.png", "cactflowery.png"] #"cact.jpg"#DESERT
+    if s == "Beach":
         return ONE
-    if s == "forest":
+    if s == "Forest":
         return TWO
-    if s == "mountain":
+    if s == "Mountain":
         return THREE
-    if s == "beach":
+    if s == "Desert":
         return FOUR
 
 def random_foreground_selection(rand_obj):
@@ -146,7 +147,7 @@ def random_foreground_selection(rand_obj):
     and returns a random selection of objects from that list stored in a new
     list.
     """
-    num_to_select=randint(1,2)
+    num_to_select=randint(3,5)
     #the numbers depend on the list of pics on the environment
     list_of_random_images=random.sample(rand_obj,num_to_select)
     return(list_of_random_images)
