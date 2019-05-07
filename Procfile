@@ -1,1 +1,1 @@
-web: python3 getinfo.py
+web: python3 getinfoheroku.py
