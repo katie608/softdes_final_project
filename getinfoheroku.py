@@ -31,7 +31,7 @@ def display_output():
     scene = request.form.get('scene')
     date = request.form.get('date')
     dims = request.form.get("dims")
-    pic = "static/"+str(scene)+".png"
+    pic = "static/"+str(scene)+"1.png"
 
     time.sleep(0.5)
     return render_template('output.html', scene=scene, date=date, dims=dims, pic=pic)
