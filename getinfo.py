@@ -52,7 +52,7 @@ def background(date):
     """
     # use get_time function to extract hour and minute
     hour, minute = get_time(date)
-    hour = int(hour)
+    hour = 12#int(hour)
     if hour <= 4 or hour > 21:
         background = Image.open("static/Night.png")
         return background
@@ -167,7 +167,7 @@ def generate_image(filename, scene, date, dims):
     back = background(date)
     middle = middleground(scene)
     fore = random_placement(back,middle,random_foreground_selection(choose_list(scene)),dims,scene)
-    n = "static/"+filename
+    n = filename
     fore.save(n)
     return fore,n
 
@@ -201,11 +201,12 @@ def display_output():
     scene = request.form.get('scene')
     date = request.form.get('date')
     dims = request.form.get("dims")
-    image, name = generate_image("background.png", scene, date, dims)
-    pic = name
+    pic = "static/Day/"+str(scene)+".png"
+    image, name = generate_image(pic, scene, date, dims)
 
 
-    time.sleep(5)
+
+    time.sleep(0.5)
     return render_template('output.html', scene=scene, date=date, dims=dims, pic=pic)
 
 if __name__ == '__main__':
