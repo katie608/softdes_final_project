@@ -45,8 +45,8 @@ We also ended up using Flask, a web framework for Python, for things that we ori
 <p class="icontext">The first layer to the program takes the date from the Flask form and opens a gradient image generated in CSS corresponding to that hour. It also reads scene choice from the Flask form and opens a middleground image corresponding to that scene and chooses a list of random objects corresponding to that scene. A random number generator is used to select a random subset of images from that list. Those images are then altered to remove whitespace and apply a color overlay to the image based on the time of day. The random images are then pasted onto the middleground at a randomly generated position within the range of the screen and then this compressed image is pasted onto the background.</p>
 
 <h2>Results</h2>
-<p>We made a video showing the functionality and use of our program, which can be found [here] (link). You can also see pictures of various scenes at various times of day below:
-TODO: Pictures</p>
+<p>We made a video showing the functionality and use of our program, which can be found <a href="http://gradient-background-generator.herokuapp.com/">here</a>.
+</p>
 
 <h2>Impacts and Privacy</h2>
 <p>Although this website does use the user’s time zone, and therefore some vague information about their location, the program does not store that data at all, so there is no need to worry about anyone stealing or using that data for malicious purposes. And although we intended our project to help people connect more with the outdoors and keep track of the time of day, our project might have the unintended consequence of replacing outdoor time, which would not be healthy. However, we believe that the benefits will outweigh the risks.</p>
